@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("The player falling speed when user holding up key")]
     [SerializeField] private float hoverFallMagnitude = 15f;
     [Tooltip("The max falling speed the player can have through gravity (doesn't account for holding down key)")]
-    [SerializeField] private float maxFallMagnitude = 20f;  //TODO: Currently only works when holding up, doesn't clamped the player speed when falling freely
+    [SerializeField] private float maxFallMagnitude = 20f;
     [SerializeField] private Transform respawnLevel;
     
     private Transform respawnPoint;
@@ -35,7 +35,6 @@ public class PlayerController : MonoBehaviour
         respawnPoint = respawnLevel.Find("StageRespawnPoint");
         rigidBody = GetComponent<Rigidbody2D>();
         initialGravity = rigidBody.gravityScale;
-        downSpeed = maxFallMagnitude;
         //Debug.LogError($"The gravity force {initialGravity} and the hoverForce {hoverForce}");
         Assert.IsTrue(hoverFallMagnitude > 0);  //Cannot have negative hover force for later calculation nor too big either
         this.virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
@@ -91,6 +90,7 @@ public class PlayerController : MonoBehaviour
             playerReleasedKey = false;
         }
 
+        downSpeed = maxFallMagnitude;
         if (playerInputY > 0)   //If the key up is pressed and the player is falling
         {
             if (rigidBody.velocity.y < 0)
