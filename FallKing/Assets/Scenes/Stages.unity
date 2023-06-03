@@ -6776,7 +6776,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7919648678535338995, guid: 0f1a039dfcca057479a59f627284959a, type: 3}
       propertyPath: windForceDuration
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
