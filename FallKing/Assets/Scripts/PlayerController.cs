@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float hoverFallMagnitude = 15f;
     [Tooltip("The max falling speed the player can have through gravity (doesn't account for holding down key)")]
     [SerializeField] private float maxFallMagnitude = 20f;
+    [Tooltip("Speed factor apply to downward speed when holding the down key")]
+    [SerializeField] private float downKeySpeedFactor = 5f;
+
     [SerializeField] private Transform respawnLevel;
     
     private Transform respawnPoint;
@@ -109,9 +112,9 @@ public class PlayerController : MonoBehaviour
         {   ////! Allow player to hold down to go down faster -> Will be a problem since the downspeed is clamped below
             var movementY = playerInputY;
             rigidBody.gravityScale = initialGravity;
-            var moveUp = new Vector2(0, movementY);
-            rigidBody.AddForce(moveUp);
-            Debug.Log($"The velocity without press up {moveUp}");
+            var moveDown = new Vector2(0, movementY * downKeySpeedFactor);
+            rigidBody.AddForce(moveDown);
+            Debug.Log($"The velocity without press up {moveDown}");
         }
 
         //! Now add horizontal force
