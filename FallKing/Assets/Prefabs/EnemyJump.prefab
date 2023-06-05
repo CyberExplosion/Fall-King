@@ -31,7 +31,7 @@ Transform:
   - {fileID: 82765849576974297}
   - {fileID: 5442188353228168654}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &158266420803675366
 PrefabInstance:
@@ -225,6 +225,14 @@ PrefabInstance:
     - target: {fileID: 6803963253097543225, guid: 5aea429db77adc748825927891adb9c8, type: 3}
       propertyPath: m_Layer
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434376428951284071, guid: 5aea429db77adc748825927891adb9c8, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434376428951284071, guid: 5aea429db77adc748825927891adb9c8, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -831291001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:

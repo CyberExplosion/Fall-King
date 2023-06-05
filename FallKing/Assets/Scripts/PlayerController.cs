@@ -3,11 +3,15 @@ using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 using Cinemachine;
 
-//Todo: When player release the key, force the user to stop (currently using add force make the user keep sliding)
-//TODO: The user will keep a minimal amount of momentum when stop?
+////Todo: When player release the key, force the user to stop (currently using add force make the user keep sliding)
+////TODO: The user will keep a minimal amount of momentum when stop?
     //! Add a huge force to the opposite moving direction?
 public class PlayerController : MonoBehaviour
 {
+    [Header("Logic")]
+    [SerializeField] CinemachineVirtualCamera virtualCamera;
+    [SerializeField] bool deathOnCollision = true;
+
     [Header("Horizontal Physics")]
     [SerializeField] private float glidingAcceleration = 15f;
     [Tooltip("The player max left and right velocity")]
@@ -23,7 +27,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform respawnLevel;
     
     private Transform respawnPoint;
-    private CinemachineVirtualCamera virtualCamera;
+    //private CinemachineVirtualCamera virtualCamera;
     private Rigidbody2D rigidBody;
     private float initialGravity;
     private float playerInputX, playerInputY;
@@ -37,7 +41,7 @@ public class PlayerController : MonoBehaviour
         initialGravity = rigidBody.gravityScale;
         //Debug.LogError($"The gravity force {initialGravity} and the hoverForce {hoverForce}");
         Assert.IsTrue(hoverFallMagnitude > 0);  //Cannot have negative hover force for later calculation nor too big either
-        this.virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
+        //this.virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
     }
 
     void OnMove(InputValue movementValue)
@@ -65,7 +69,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Collide with any tile collision box
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground" && deathOnCollision)
         {
             virtualCamera.Follow = this.respawnLevel;
             this.transform.position = new Vector2(this.respawnPoint.position.x, this.respawnPoint.position.y);
