@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-//TODO: add a timer between each jump so that it doesn't appear to be too aggressive
+////TODO: add a timer between each jump so that it doesn't appear to be too aggressive
 //? REMEMBER: Have the layer of this object to be ignore raycast or else the linecast would not work
 
 ////TODO: Add jump distance. Currently the user can just bounce straight to the target location without any stops
@@ -14,18 +14,25 @@ public class EnemyJumpAI : MonoBehaviour
     [SerializeField] private EnemyDetection detectorScript;
 
     [Header("Pathfinding")]
+    [Tooltip("Time interval between scanning for player")]
     [SerializeField] private float scanInterval;    //Time between scanning for target
+    [Tooltip("Time interval between user making a move toward target")]
     [SerializeField] private float moveInterval;    //Time between each move to target
 
     [Header("Physics")]
+    [Tooltip("The vertical force apply on each move")]
     [SerializeField] private float jumpForce;
+    [Tooltip("Time the user will take to reach the target")]
     [SerializeField] private float timeToLocation;  //Time object should take to move to target location (exclude the interval)
+    [Tooltip("Distance between each hop while moving toward target")]
     [SerializeField] private float oneHopDistance;   //The max distance user can travel in one hop
+    [Tooltip("Layer to ignore while detecting for player")]
     [SerializeField] LayerMask ignoreLayerLinecast;
 
     private Rigidbody2D rigidBody;
     private RaycastHit2D hit;
     private float scanTimer = 0;
+    private float moveTimer = 0;
     private float initialJumpForce;
     private float impulseForce; // Force used for the user hopping - use Force.Impulse
 
@@ -37,12 +44,12 @@ public class EnemyJumpAI : MonoBehaviour
         Assert.AreNotEqual(timeToLocation, 0f);
     }
 
-    //TODO: detect ground is not a good way yet, test it out more
-    private void OnCollisionEnter2D(Collision2D collision)
+    ////TODO: Detect ground to enable jumping again - is not a good way yet, test it out more
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Ground"))
         {
-            Debug.Log("Enter the ground");
+            Debug.Log("Enable jumping");
             jumpForce = initialJumpForce;
         }
     }
@@ -66,6 +73,7 @@ public class EnemyJumpAI : MonoBehaviour
         bool detection = detectorScript.detectedPlayer;
 
         scanTimer += Time.deltaTime;
+        moveTimer += Time.deltaTime;
         if (scanTimer > scanInterval && detection)
         {
             Vector2 currentPos = new Vector2(transform.position.x, transform.position.y);
@@ -90,11 +98,15 @@ public class EnemyJumpAI : MonoBehaviour
 
         if (hit.collider && hit.collider.gameObject.CompareTag("Player"))
         {
-            Vector2 hopToTarget = new Vector2(impulseForce, jumpForce);
-            rigidBody.AddForce(hopToTarget, ForceMode2D.Impulse);   //? FIXME: Change to impulse made the user still jumping despite the jumpForce is 0
+            if (moveTimer > moveInterval)
+            {
+                Vector2 hopToTarget = new Vector2(impulseForce, jumpForce);
+                rigidBody.AddForce(hopToTarget, ForceMode2D.Impulse);
 
-            Debug.Log($"The force vector {hopToTarget}");
-            Debug.Log($"The thing that was hit {hit.rigidbody.name}");
+                Debug.LogError($"The force vector {hopToTarget}");
+                Debug.Log($"The thing that was hit {hit.rigidbody.name}");
+                moveTimer = 0f;
+            }
             Debug.DrawLine(transform.position, hit.rigidbody.position);
         }
     }
