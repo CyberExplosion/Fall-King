@@ -6764,7 +6764,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4081683204570917610, guid: 0f1a039dfcca057479a59f627284959a, type: 3}
       propertyPath: m_ForceAngle
-      value: 45
+      value: 315
       objectReference: {fileID: 0}
     - target: {fileID: 4081683204570917610, guid: 0f1a039dfcca057479a59f627284959a, type: 3}
       propertyPath: m_UseGlobalAngle

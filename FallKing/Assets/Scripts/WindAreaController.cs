@@ -15,6 +15,7 @@ public class WindAreaController : MonoBehaviour
     private float windForceTimer = 0f;
     private float noForceTimer = 0f;
     private float forceChangeTimer = 0f;
+    private float secondAngle = 225f;
 
     void Start()
     {
@@ -22,7 +23,7 @@ public class WindAreaController : MonoBehaviour
         initialForceMagnitude = areaEffector.forceMagnitude;
     }
 
-    // Update is called once per frame
+    //TODO: add more angle variation so that we have better gameeplay
     void Update()
     {
         if (windForceActive && windForceTimer < windForceDuration)
@@ -51,7 +52,7 @@ public class WindAreaController : MonoBehaviour
 
         if (forceChangeTimer > timeBetForceDirChange)
         {
-            areaEffector.forceAngle = (areaEffector.forceAngle + 180) % 360;
+            (areaEffector.forceAngle, secondAngle) = (secondAngle, areaEffector.forceAngle); 
             forceChangeTimer = 0f;
         }
         forceChangeTimer += Time.deltaTime;
