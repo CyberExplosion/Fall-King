@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WindAreaController : MonoBehaviour
 {
-    [Tooltip("The time interval in which the force will change to the opposite direction")]
+    /*[Tooltip("The time interval in which the force will change to the opposite direction")]
     [SerializeField] private float timeBetForceDirChange = 1f;
     [Tooltip("The duration of when the wind will be on")]
     [SerializeField] private float windForceDuration = 1f;
@@ -56,5 +56,30 @@ public class WindAreaController : MonoBehaviour
             forceChangeTimer = 0f;
         }
         forceChangeTimer += Time.deltaTime;
+    }*/
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            // Player entered the windy area
+            ActualPlayerController player = other.GetComponent<ActualPlayerController>();
+            if (player != null)
+            {
+                player.SetInWindyArea(true);
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            // Player exited the windy area
+            ActualPlayerController player = other.GetComponent<ActualPlayerController>();
+            if (player != null)
+            {
+                player.SetInWindyArea(false);
+            }
+        }
     }
 }
