@@ -7299,8 +7299,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 64d9ce3acd8584cac894b25ae60a0d7a, type: 2}
-  m_sharedMaterial: {fileID: 4295230943045120736, guid: 64d9ce3acd8584cac894b25ae60a0d7a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -49432,6 +49432,12 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: 9ee07f3f59d549f4cabb8e1213400890, type: 3}
     audioSource: {fileID: 0}
     title: Death
+    volume: 1
+    pitch: 1
+    loop: 0
+  - clip: {fileID: 8300000, guid: aecbcb6d71692c94c807c1f0f0796cfc, type: 3}
+    audioSource: {fileID: 0}
+    title: Boost
     volume: 1
     pitch: 1
     loop: 0
