@@ -57,6 +57,11 @@ public class PlayerController : MonoBehaviour
         {
             playerReleasedKey = true;
         }
+        // Plays boost sound when player clicks down
+        if (playerInputY != 0 && playerInputY < 0)
+        {
+            FindObjectOfType<SoundManager>().PlaySoundEffect("Boost");
+        }
     }
 
     //public void setRespawnPoint(Transform newRespawn)
