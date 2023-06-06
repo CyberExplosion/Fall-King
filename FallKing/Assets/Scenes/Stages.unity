@@ -49527,7 +49527,7 @@ MonoBehaviour:
     pitch: 1
     loop: 1
   sfxClips:
-  - clip: {fileID: 8300000, guid: 6eb90045e2156044b9292961043e35d9, type: 3}
+  - clip: {fileID: 8300000, guid: 9ee07f3f59d549f4cabb8e1213400890, type: 3}
     audioSource: {fileID: 0}
     title: Death
     volume: 1
