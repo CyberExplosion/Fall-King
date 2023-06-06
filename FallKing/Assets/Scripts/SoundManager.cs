@@ -44,7 +44,7 @@ public class SoundManager : MonoBehaviour
         }
 
         //play initial track
-        this.PlayMusicTrack("MenuMusic");
+        this.PlayMusicTrack("Terraria");
     }
 
     public void PlayMusicTrack(string title)
