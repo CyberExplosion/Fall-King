@@ -7486,6 +7486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   respawnLevel: {fileID: 179537950}
   playerObj: {fileID: 260818422}
+  deathOnCollision: 0
 --- !u!4 &260818436 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4709612198841665636, guid: 1635bc6550d1bbd45847ce03162d3fae, type: 3}
@@ -8601,8 +8602,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190887ab01b3447fbb00864f581eabb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMeshPro: {fileID: 211147166}
-  textValue: Learning... how to fall
+  textMeshPro: {fileID: 0}
+  textValue: 
 --- !u!114 &587960995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26473,8 +26474,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190887ab01b3447fbb00864f581eabb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMeshPro: {fileID: 211147166}
-  textValue: Stage 2 Name... here
+  textMeshPro: {fileID: 0}
+  textValue: 
 --- !u!1 &1245204215
 GameObject:
   m_ObjectHideFlags: 0
@@ -57940,7 +57941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190887ab01b3447fbb00864f581eabb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textMeshPro: {fileID: 211147166}
+  textMeshPro: {fileID: 0}
   textValue: 
 --- !u!1001 &2087667049
 PrefabInstance:

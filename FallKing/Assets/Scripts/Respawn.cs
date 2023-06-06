@@ -10,6 +10,7 @@ public class Respawn : MonoBehaviour
 {
     [SerializeField] private Transform respawnLevel;
     [SerializeField] private GameObject playerObj;
+    [SerializeField] bool deathOnCollision = false;
 
     private Transform respawnPoint;
     private CinemachineVirtualCamera virtualCamera;
@@ -33,10 +34,9 @@ public class Respawn : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Collide with any tile collision box
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground" && deathOnCollision == true)
         {
             FindObjectOfType<SoundManager>().PlaySoundEffect("Death");
-            Debug.Log("Sound Played");
             virtualCamera.Follow = this.respawnLevel;
             playerObj.transform.position = new Vector2(this.respawnPoint.position.x, this.respawnPoint.position.y);
             //Debug.Log($"The player position {playerObj.transform.position}");
