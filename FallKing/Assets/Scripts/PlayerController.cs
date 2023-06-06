@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
             var moveDown = new Vector2(0, movementY * downKeySpeedFactor);
             rigidBody.AddForce(moveDown);
             //New audio for boost
-            FindObjectOfType<SoundManager>().PlaySoundEffect("Boost");
+            //FindObjectOfType<SoundManager>().PlaySoundEffect("Boost");
             //Debug.Log($"The velocity without press up {moveDown}");
         }
 
