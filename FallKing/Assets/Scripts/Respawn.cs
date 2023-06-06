@@ -36,6 +36,7 @@ public class Respawn : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             FindObjectOfType<SoundManager>().PlaySoundEffect("Death");
+            Debug.Log("Sound Played");
             virtualCamera.Follow = this.respawnLevel;
             playerObj.transform.position = new Vector2(this.respawnPoint.position.x, this.respawnPoint.position.y);
             //Debug.Log($"The player position {playerObj.transform.position}");
