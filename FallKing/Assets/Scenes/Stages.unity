@@ -7930,7 +7930,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 403185704}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 27373c0920fc9534ea73fa01c622b0ab, type: 3}
@@ -49519,7 +49519,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicMixerGroup: {fileID: -10248200551355864, guid: 5668fbf22e7234da9a6748060ec8353e, type: 2}
   sfxMixerGroup: {fileID: -8090992118389914705, guid: 5668fbf22e7234da9a6748060ec8353e, type: 2}
-  musicTracks: []
+  musicTracks:
+  - clip: {fileID: 8300000, guid: 27373c0920fc9534ea73fa01c622b0ab, type: 3}
+    audioSource: {fileID: 0}
+    title: Terraria
+    volume: 0.452
+    pitch: 0
+    loop: 1
   sfxClips: []
 --- !u!4 &1587698958
 Transform:
