@@ -7364,7 +7364,7 @@ GameObject:
   - component: {fileID: 211147167}
   - component: {fileID: 211147166}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Stage Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7388,7 +7388,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 300, y: 50}
+  m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &211147166
 MonoBehaviour:
@@ -7412,8 +7412,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 64d9ce3acd8584cac894b25ae60a0d7a, type: 2}
+  m_sharedMaterial: {fileID: 4295230943045120736, guid: 64d9ce3acd8584cac894b25ae60a0d7a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -26390,6 +26390,7 @@ GameObject:
   - component: {fileID: 1230602971}
   - component: {fileID: 1230602973}
   - component: {fileID: 1230602972}
+  - component: {fileID: 1230602974}
   m_Layer: 0
   m_Name: LevelBoundary
   m_TagString: LevelBoundary
@@ -26472,6 +26473,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 55, y: 0.1}
   m_EdgeRadius: 0
+--- !u!114 &1230602974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230602970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190887ab01b3447fbb00864f581eabb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 211147166}
+  textValue: Stage 2 Name... here
 --- !u!1 &1245204215
 GameObject:
   m_ObjectHideFlags: 0
@@ -57685,6 +57700,7 @@ GameObject:
   - component: {fileID: 1883606947}
   - component: {fileID: 1883606949}
   - component: {fileID: 1883606948}
+  - component: {fileID: 1883606950}
   m_Layer: 0
   m_Name: LevelBoundary
   m_TagString: LevelBoundary
@@ -57767,6 +57783,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 55, y: 0.1}
   m_EdgeRadius: 0
+--- !u!114 &1883606950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883606946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190887ab01b3447fbb00864f581eabb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 211147166}
+  textValue: Learning... how to fall
 --- !u!1 &1888648624
 GameObject:
   m_ObjectHideFlags: 0
