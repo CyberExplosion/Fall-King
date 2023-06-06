@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool deathOnCollision = true;
 
     [Header("Horizontal Physics")]
+    [Tooltip("Acceleration to the top speed")]
     [SerializeField] private float glidingAcceleration = 15f;
     [Tooltip("The player max left and right velocity")]
     [SerializeField] private float maxMoveMagnitude = 20f;
@@ -39,7 +40,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        respawnPoint = respawnLevel.Find("StageRespawnPoint");
+        //respawnPoint = respawnLevel.Find("StageRespawnPoint");
         rigidBody = GetComponent<Rigidbody2D>();
         initialGravity = rigidBody.gravityScale;
         //Debug.LogError($"The gravity force {initialGravity} and the hoverForce {hoverForce}");
@@ -58,10 +59,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void setRespawnPoint(Transform newRespawn)
-    {
-        this.respawnPoint = newRespawn;
-    }
+    //public void setRespawnPoint(Transform newRespawn)
+    //{
+    //    this.respawnPoint = newRespawn;
+    //}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -71,12 +72,12 @@ public class PlayerController : MonoBehaviour
             playerInputX = 0;
         }
 
-        // Collide with any tile collision box
-        if (collision.gameObject.tag == "Ground" && deathOnCollision)
-        {
-            virtualCamera.Follow = this.respawnLevel;
-            this.transform.position = new Vector2(this.respawnPoint.position.x, this.respawnPoint.position.y);
-        }
+        //Collide with any tile collision box
+        //if (collision.gameObject.tag == "Ground" && deathOnCollision)
+        //{
+        //    virtualCamera.Follow = this.respawnLevel;
+        //    this.transform.position = new Vector2(this.respawnPoint.position.x, this.respawnPoint.position.y);
+        //}
     }
 
     void FixedUpdate()
@@ -114,7 +115,7 @@ public class PlayerController : MonoBehaviour
             rigidBody.gravityScale = initialGravity;
             var moveDown = new Vector2(0, movementY * downKeySpeedFactor);
             rigidBody.AddForce(moveDown);
-            Debug.Log($"The velocity without press up {moveDown}");
+            //Debug.Log($"The velocity without press up {moveDown}");
         }
 
         //! Now add horizontal force
@@ -125,7 +126,7 @@ public class PlayerController : MonoBehaviour
         if (rigidBody.velocity.y < 0 && playerInputY >= 0)
         {
             rigidBody.velocity = new Vector2(Mathf.Clamp(rigidBody.velocity.x, -maxMoveMagnitude, maxMoveMagnitude), Mathf.Clamp(rigidBody.velocity.y, -downSpeed, 0f));
-            Debug.Log("The velocity is clamped");
+            //Debug.Log("The velocity is clamped");
         }
         else
         {   //Only clamp the left/right
@@ -133,6 +134,6 @@ public class PlayerController : MonoBehaviour
             rigidBody.velocity = Vector2.ClampMagnitude(rigidBody.velocity, maxMoveMagnitude);
         }
 
-        Debug.Log($"current velocity vertical: {rigidBody.velocity.y} and horizontal: {rigidBody.velocity.x}");
+        //Debug.Log($"current velocity vertical: {rigidBody.velocity.y} and horizontal: {rigidBody.velocity.x}");
     }
 }

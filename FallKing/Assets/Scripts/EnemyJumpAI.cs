@@ -39,7 +39,7 @@ public class EnemyJumpAI : MonoBehaviour
     private void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        Debug.Log($"the componnent name {rigidBody.name}");
+        //Debug.Log($"the componnent name {rigidBody.name}");
         initialJumpForce = jumpForce;
         Assert.AreNotEqual(timeToLocation, 0f);
     }
@@ -49,7 +49,7 @@ public class EnemyJumpAI : MonoBehaviour
     {
         if (collision.collider.CompareTag("Ground"))
         {
-            Debug.Log("Enable jumping");
+            //Debug.Log("Enable jumping");
             jumpForce = initialJumpForce;
         }
     }
@@ -84,11 +84,11 @@ public class EnemyJumpAI : MonoBehaviour
 
             var velocity = distToTarget / timeToLocation;
             impulseForce = (rigidBody.mass * velocity) / timeToLocation;   // force = impulse * velocity / times
-            Debug.Log($"The impulse force {impulseForce}");
+            //Debug.Log($"The impulse force {impulseForce}");
 
             hit = Physics2D.Linecast(currentPos, targetPos, ~ignoreLayerLinecast);
             //Debug.Log($"Ignore these mask {LayerMask.GetMask("Enemy Detection Layer", "Enemy Layer")}");
-            Debug.Log($"The hit {hit.collider.gameObject.name}");
+            //Debug.Log($"The hit {hit.collider.gameObject.name}");
             scanTimer = 0f;
         }
          else
@@ -103,8 +103,8 @@ public class EnemyJumpAI : MonoBehaviour
                 Vector2 hopToTarget = new Vector2(impulseForce, jumpForce);
                 rigidBody.AddForce(hopToTarget, ForceMode2D.Impulse);
 
-                Debug.LogError($"The force vector {hopToTarget}");
-                Debug.Log($"The thing that was hit {hit.rigidbody.name}");
+                //Debug.LogError($"The force vector {hopToTarget}");
+                //Debug.Log($"The thing that was hit {hit.rigidbody.name}");
                 moveTimer = 0f;
             }
             Debug.DrawLine(transform.position, hit.rigidbody.position);

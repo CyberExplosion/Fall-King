@@ -1,7 +1,8 @@
 using Pathfinding;
 using UnityEngine;
 
-public class BirdAI : MonoBehaviour
+//TODO: add detection range prefab
+public class FlyingChaserController : MonoBehaviour
 {
     [Header("Pathfinding")]
     [SerializeField] Transform target;
@@ -31,7 +32,7 @@ public class BirdAI : MonoBehaviour
     {
         if (path == null)
         {
-            Debug.Log("The path is null");
+            //Debug.Log("The path is null");
             return;
         }
 

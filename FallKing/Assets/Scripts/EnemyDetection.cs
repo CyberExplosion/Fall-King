@@ -17,12 +17,12 @@ public class EnemyDetection : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         detectedPlayer = true;
-        Debug.Log("TRIGGER");
+        //Debug.Log("TRIGGER");
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         detectedPlayer = false;
-        Debug.Log("EXITTTT");
+        //Debug.Log("EXITTTT");
     }
 }

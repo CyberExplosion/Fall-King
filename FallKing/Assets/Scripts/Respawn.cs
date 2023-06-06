@@ -9,6 +9,7 @@ using Cinemachine;
 public class Respawn : MonoBehaviour
 {
     [SerializeField] private Transform respawnLevel;
+    [SerializeField] private GameObject playerObj;
 
     private Transform respawnPoint;
     private CinemachineVirtualCamera virtualCamera;
@@ -21,9 +22,12 @@ public class Respawn : MonoBehaviour
         this.virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
     }
 
-    public void setRespawnPoint(Transform newRespawn)
+    public void setRespawnLevel(Transform newRespawn)
     {
-        this.respawnPoint = newRespawn;
+        //Debug.Log($"This respawn point {respawnLevel.position}");
+        //Debug.Log($"New respawn point {newRespawn.position}");
+        this.respawnLevel = newRespawn;
+        respawnPoint = respawnLevel.Find("StageRespawnPoint");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -32,7 +36,8 @@ public class Respawn : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             virtualCamera.Follow = this.respawnLevel;
-            this.transform.position = new Vector2(this.respawnPoint.position.x, this.respawnPoint.position.y);
+            playerObj.transform.position = new Vector2(this.respawnPoint.position.x, this.respawnPoint.position.y);
+            //Debug.Log($"The player position {playerObj.transform.position}");
             this.rigidBody.velocity = new Vector2(0, 0);
         }
     }

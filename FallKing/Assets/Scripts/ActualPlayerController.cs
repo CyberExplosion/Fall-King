@@ -25,6 +25,8 @@ public class ActualPlayerController : MonoBehaviour
 
     void Update()
     {
+        Debug.Log($"Player velocity {rigidBody.velocity}");
+
         float horizontalInput = Input.GetAxis("Horizontal");
 
         Vector2 movement = new Vector2(horizontalInput * this.speed, 0f);
