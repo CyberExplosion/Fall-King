@@ -57,7 +57,6 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        //respawnPoint = respawnLevel.Find("StageRespawnPoint");
         rigidBody = GetComponent<Rigidbody2D>();
         initialGravity = rigidBody.gravityScale;
         //Debug.LogError($"The gravity force {initialGravity} and the hoverForce {hoverForce}");
@@ -198,11 +197,6 @@ public class PlayerController : MonoBehaviour
     //    }
     //}
 
-    //public void setRespawnPoint(Transform newRespawn)
-    //{
-    //    this.respawnPoint = newRespawn;
-    //}
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Collide with left or right boundary
@@ -210,13 +204,6 @@ public class PlayerController : MonoBehaviour
         {
             playerInputX = 0;
         }
-
-        //Collide with any tile collision box
-        //if (collision.gameObject.tag == "Ground" && deathOnCollision)
-        //{
-        //    virtualCamera.Follow = this.respawnLevel;
-        //    this.transform.position = new Vector2(this.respawnPoint.position.x, this.respawnPoint.position.y);
-        //}
     }
 
 

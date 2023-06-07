@@ -20151,7 +20151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   respawnLevel: {fileID: 179537950}
   playerObj: {fileID: 260818422}
-  deathOnCollision: 0
+  deathOnCollision: 1
 --- !u!4 &260818436 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4709612198841665636, guid: 1635bc6550d1bbd45847ce03162d3fae, type: 3}
@@ -20775,6 +20775,7 @@ GameObject:
   - component: {fileID: 399392094}
   - component: {fileID: 399392096}
   - component: {fileID: 399392095}
+  - component: {fileID: 399392097}
   m_Layer: 0
   m_Name: LevelBoundary
   m_TagString: LevelBoundary
@@ -20811,7 +20812,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previousLevel: {fileID: 258106659}
   nextLevel: {fileID: 2064148653}
-  newRespawnLevel: {fileID: 0}
+  newRespawnLevel: {fileID: 2064148654}
 --- !u!61 &399392096
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20857,6 +20858,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 55, y: 0.1}
   m_EdgeRadius: 0
+--- !u!114 &399392097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 399392093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190887ab01b3447fbb00864f581eabb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 211147166}
+  textValue: Don't forget to wiggle...
 --- !u!1 &403185704
 GameObject:
   m_ObjectHideFlags: 0
@@ -21123,7 +21138,7 @@ PrefabInstance:
       objectReference: {fileID: 2056828090}
     - target: {fileID: 1441517162735930691, guid: 1635bc6550d1bbd45847ce03162d3fae, type: 3}
       propertyPath: deathOnCollision
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1441517162735930691, guid: 1635bc6550d1bbd45847ce03162d3fae, type: 3}
       propertyPath: maxFallMagnitude
@@ -22038,6 +22053,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190887ab01b3447fbb00864f581eabb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 211147166}
+  textValue: Learning... how to fall
 --- !u!114 &587960995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34256,7 +34273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.06666667}
+  m_Color: {r: 0.29803923, g: 0.29803923, b: 0.29803923, a: 0.8980392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -49451,6 +49468,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190887ab01b3447fbb00864f581eabb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 211147166}
+  textValue: Enemies... everywhere
 --- !u!1 &1245204215
 GameObject:
   m_ObjectHideFlags: 0
@@ -90340,10 +90359,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -96649,6 +96668,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190887ab01b3447fbb00864f581eabb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 0}
+  textValue: 
 --- !u!1 &2064148653
 GameObject:
   m_ObjectHideFlags: 0
@@ -103488,7 +103509,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previousLevel: {fileID: 1043824622}
   nextLevel: {fileID: 1085851234}
-  newRespawnLevel: {fileID: 208029408}
+  newRespawnLevel: {fileID: 1085851235}
 --- !u!61 &2086756546
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -103546,6 +103567,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190887ab01b3447fbb00864f581eabb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 211147166}
+  textValue: Limited visibility...
 --- !u!1001 &2087667049
 PrefabInstance:
   m_ObjectHideFlags: 0
