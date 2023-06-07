@@ -2,10 +2,11 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 using Cinemachine;
+using UnityEngine.UIElements;
 
 ////Todo: When player release the key, force the user to stop (currently using add force make the user keep sliding)
 ////TODO: The user will keep a minimal amount of momentum when stop?
-    //! Add a huge force to the opposite moving direction?
+//! Add a huge force to the opposite moving direction?
 public class PlayerController : MonoBehaviour
 {
     [Header("Logic")]
@@ -38,6 +39,17 @@ public class PlayerController : MonoBehaviour
     bool playerReleasedKey = true;
     float downSpeed;
 
+    private PlayerInput playerInput;
+    private InputAction moveAction;
+
+
+    //Unsubscribe event when disable the script
+    private void OnDisable()
+    {
+        moveAction.started -= MoveAction_started;
+        moveAction.canceled -= MoveAction_canceled;
+    }
+
     void Start()
     {
         //respawnPoint = respawnLevel.Find("StageRespawnPoint");
@@ -45,24 +57,45 @@ public class PlayerController : MonoBehaviour
         initialGravity = rigidBody.gravityScale;
         //Debug.LogError($"The gravity force {initialGravity} and the hoverForce {hoverForce}");
         Assert.IsTrue(hoverFallMagnitude > 0);  //Cannot have negative hover force for later calculation nor too big either
-        //this.virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
+                                                //this.virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
+
+        //Register input
+        playerInput = GetComponent<PlayerInput>();
+        moveAction = playerInput.actions["Move"];
+
+        moveAction.started += MoveAction_started;   //Subcribe to the event
+        moveAction.canceled += MoveAction_canceled;
     }
 
-    void OnMove(InputValue movementValue)
+    private void MoveAction_canceled(InputAction.CallbackContext ctx)
     {
-        Vector2 movementVector = movementValue.Get<Vector2>();
-        playerInputX = movementVector.x;
-        playerInputY = movementVector.y;
-        if (playerInputX == 0)
-        {
-            playerReleasedKey = true;
-        }
-        // Plays boost sound when player clicks down
-        if (playerInputY != 0 && playerInputY < 0)
-        {
-            FindObjectOfType<SoundManager>().PlaySoundEffect("Boost");
-        }
+        playerInputX = 0;
+        playerInputY = 0;
+        Debug.Log($"The player input {ctx.ReadValue<Vector2>()}");
     }
+
+    private void MoveAction_started(InputAction.CallbackContext ctx)
+    {
+        playerInputX = ctx.ReadValue<Vector2>().x;
+        playerInputY = ctx.ReadValue<Vector2>().y;
+        Debug.Log($"The player input {ctx.ReadValue<Vector2>()}");
+    }
+
+    //void OnMove(InputValue movementValue)
+    //{
+    //    Vector2 movementVector = movementValue.Get<Vector2>();
+    //    playerInputX = movementVector.x;
+    //    playerInputY = movementVector.y;
+    //    if (playerInputX == 0)
+    //    {
+    //        playerReleasedKey = true;
+    //    }
+    //    // Plays boost sound when player clicks down
+    //    if (playerInputY != 0 && playerInputY < 0)
+    //    {
+    //        FindObjectOfType<SoundManager>().PlaySoundEffect("Boost");
+    //    }
+    //}
 
     //public void setRespawnPoint(Transform newRespawn)
     //{

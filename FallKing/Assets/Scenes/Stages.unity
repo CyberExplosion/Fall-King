@@ -7924,7 +7924,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1441517162735930691, guid: 1635bc6550d1bbd45847ce03162d3fae, type: 3}
       propertyPath: timeToStop
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1441517162735930691, guid: 1635bc6550d1bbd45847ce03162d3fae, type: 3}
       propertyPath: respawnLevel
@@ -8016,7 +8016,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5721829817886098797, guid: 1635bc6550d1bbd45847ce03162d3fae, type: 3}
       propertyPath: m_NotificationBehavior
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5721829817886098797, guid: 1635bc6550d1bbd45847ce03162d3fae, type: 3}
       propertyPath: m_ActionEvents.Array.size
@@ -8509,6 +8509,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190887ab01b3447fbb00864f581eabb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 0}
+  textValue: 
 --- !u!114 &587960995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29189,6 +29191,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190887ab01b3447fbb00864f581eabb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 0}
+  textValue: 
 --- !u!1 &1245204215
 GameObject:
   m_ObjectHideFlags: 0
@@ -60724,6 +60728,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190887ab01b3447fbb00864f581eabb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 0}
+  textValue: 
 --- !u!1 &2086756543
 GameObject:
   m_ObjectHideFlags: 0
