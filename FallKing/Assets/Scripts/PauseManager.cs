@@ -60,6 +60,10 @@ public class PauseManager : MonoBehaviour
 
     public void GiveUp()
     {
+        Time.timeScale = 1;
+        AudioListener.pause = false;
+        paused = false;
+        menu.SetActive(false);
         SceneManager.LoadScene("MainMenu");
     }
 }
