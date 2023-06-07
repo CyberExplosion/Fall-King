@@ -225,6 +225,8 @@ public class PlayerController : MonoBehaviour
         ////TODO: Stop using Add force to control player hovering speed? Instead change the gravity? Clamp the velocity as needed
         ////? Currently if the player is shoot up by fan while holding hover, the lesser gravity will allow to shoot up even further
 
+        if (PauseManager.paused) return;
+
         // Player release moving key, add a force to the opposite moving direction
         if (playerReleasedKey)
         {
