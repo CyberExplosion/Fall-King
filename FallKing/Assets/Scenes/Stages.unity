@@ -21414,6 +21414,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190887ab01b3447fbb00864f581eabb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 211147166}
+  textValue: Learning... how to fall
 --- !u!114 &587960995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47696,6 +47698,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190887ab01b3447fbb00864f581eabb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 211147166}
+  textValue: Stage 2 Name Here
 --- !u!1 &1245204215
 GameObject:
   m_ObjectHideFlags: 0
@@ -58934,6 +58938,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1415620764}
   m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1372575192
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1372575194}
+  - component: {fileID: 1372575193}
+  m_Layer: 0
+  m_Name: PauseSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1372575193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372575192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f53f1d529ac941eda6e17af4f2700a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paused: 0
+--- !u!4 &1372575194
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372575192}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.2501912, y: -2.2515364, z: -0.78469867}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1412028197
 GameObject:
@@ -87343,6 +87392,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190887ab01b3447fbb00864f581eabb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 0}
+  textValue: 
 --- !u!1 &2086756543
 GameObject:
   m_ObjectHideFlags: 0
@@ -87449,6 +87500,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190887ab01b3447fbb00864f581eabb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 211147166}
+  textValue: Stage 3 Name Here
 --- !u!1001 &2087667049
 PrefabInstance:
   m_ObjectHideFlags: 0
