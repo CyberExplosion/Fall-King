@@ -84,12 +84,12 @@ public class PlayerController : MonoBehaviour
         if (playerInput == null)
         {
             Debug.Log("This betch was null all this time");
+            playerInput = GetComponent<PlayerInput>();
         }
-        else
-        {
-            Debug.Log($"Map should switch now into Freezing");
-            playerInput.SwitchCurrentActionMap("Freezing");
-        }
+        Debug.Log($"Map should switch now into Freezing");
+        playerInput.actions.FindActionMap("Player").Disable();
+        freezingMap.Enable();
+        Debug.Log($"Curernt input map {playerInput.currentActionMap}");
     }
 
     private void SwitchMap(InputAction.CallbackContext context)
@@ -143,7 +143,7 @@ public class PlayerController : MonoBehaviour
 
     public void ResetActionMap()
     {
-        playerInput.currentActionMap = originalActMap;
+        playerInput.SwitchCurrentActionMap("Player");
     }
 
     /// <summary>

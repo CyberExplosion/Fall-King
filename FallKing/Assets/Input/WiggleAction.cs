@@ -8,8 +8,7 @@ using UnityEngine.InputSystem;
 
 public class QuicklyWiggleInteraction : IInputInteraction
 {
-    public float duration = 0.2f;
-    public int cycles = 2;
+    [SerializeField] private float duration = 0.2f;
 
     /// <summary>
     /// Static constructor use to initialize data
@@ -48,7 +47,9 @@ public class QuicklyWiggleInteraction : IInputInteraction
 
             case InputActionPhase.Started:
                 if (context.ReadValue<Vector2>() == new Vector2(-1, 0))
+                {
                     context.Performed();
+                }
                 break;
         }
 

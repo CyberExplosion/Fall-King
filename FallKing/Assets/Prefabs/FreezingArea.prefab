@@ -99,12 +99,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb2373837bb0f345a7a92a0dc07c6ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 8192697195249065621, guid: 1635bc6550d1bbd45847ce03162d3fae, type: 3}
-  playerInput: {fileID: 5721829817886098797, guid: 1635bc6550d1bbd45847ce03162d3fae, type: 3}
+  player: {fileID: 0}
+  playerInput: {fileID: 0}
   speedFactor: 1
   freezeTime: 5
   frozenMassFactor: 1.5
   alternatePressCycle: 2
+  playerFroze: 0
 --- !u!61 &5452543914493751869
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 //? Froze = the player lose all control and player mass increase by a certain factor
 //? Unfroze = player shake left and right quick enough to break free
+
+//? WARNING = DO NOT USE THE DEFAULT PREFAB
 public class FreezingAreaController : MonoBehaviour
 {
     [Header("Resource")]
@@ -21,13 +23,17 @@ public class FreezingAreaController : MonoBehaviour
     [Tooltip("The number of alternating key press cycle to unfroze the player")]
     [SerializeField] private int alternatePressCycle = 2;
 
+    PlayerController playerController;
     float freezeCounter = 0;
-    public bool playerFroze = false;
+    bool playerFroze = false;
     float playerInitialMass;
     InputAction unfrozeAction;
 
+    int wiggleCounter = 0;
+
     private void Start()
     {
+        playerController = player.GetComponent<PlayerController>();
         playerInitialMass = player.GetComponent<Rigidbody2D>().mass;
         unfrozeAction = playerInput.actions["Unfroze"];
         unfrozeAction.started += UnfrozeAction_started;
@@ -89,12 +95,11 @@ public class FreezingAreaController : MonoBehaviour
         unfrozeAction.performed += UnfrozeAction_performed;
         unfrozeAction.canceled += UnfrozeAction_canceled;   //? Make sure to unsub later when unfroze
 
-        PlayerController playerController = player.GetComponent<PlayerController>();
+
         //playerController.UnSubCurrentActionCallback();
 
         Debug.Log("at least get here before");
 
-        Debug.Log("FREEZE NOWWWW");
         playerController.SwitchMap();    //? Switching without unsubscribing, memory leak?
 
         //Debug.LogError($"After froze mass {player.GetComponent<Rigidbody2D>().mass}");
@@ -108,8 +113,13 @@ public class FreezingAreaController : MonoBehaviour
 
     private void UnfrozeAction_performed(InputAction.CallbackContext ctx)
     {
-        Debug.Log("Unfroze the player, play a sound");
-        UnFrozePlayer();
+        wiggleCounter++;
+
+        if (wiggleCounter > 3)
+        {
+            Debug.Log("UNFROZE THE PLAYER");
+            UnFrozePlayer();
+        }
     }
 
     private void UnfrozeAction_started(InputAction.CallbackContext ctx)
@@ -123,5 +133,6 @@ public class FreezingAreaController : MonoBehaviour
         player.GetComponent<Rigidbody2D>().mass = playerInitialMass;
         playerFroze = false;
         //Deactive freezing effects
+        playerController.ResetActionMap();
     }
 }
