@@ -12,7 +12,6 @@ public class FreezingAreaController : MonoBehaviour
 {
     [Header("Resource")]
     [SerializeField] private GameObject player;
-    [SerializeField] private PlayerInput playerInput;
 
     [Tooltip("The factor to apply to player current movement speed")]
     [SerializeField] private float speedFactor = 1.0f;
@@ -35,7 +34,7 @@ public class FreezingAreaController : MonoBehaviour
     {
         playerController = player.GetComponent<PlayerController>();
         playerInitialMass = player.GetComponent<Rigidbody2D>().mass;
-        unfrozeAction = playerInput.actions["Unfroze"];
+        unfrozeAction = playerController.GetComponent<PlayerInput>().actions["Unfroze"];
         unfrozeAction.started += UnfrozeAction_started;
         unfrozeAction.performed += UnfrozeAction_performed;
         unfrozeAction.canceled += UnfrozeAction_canceled;
