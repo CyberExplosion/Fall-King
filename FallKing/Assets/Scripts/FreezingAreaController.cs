@@ -8,7 +8,9 @@ using UnityEngine.InputSystem;
 //? Unfroze = player shake left and right quick enough to break free
 public class FreezingAreaController : MonoBehaviour
 {
+    [Header("Resource")]
     [SerializeField] private GameObject player;
+    [SerializeField] private PlayerInput playerInput;
 
     [Tooltip("The factor to apply to player current movement speed")]
     [SerializeField] private float speedFactor = 1.0f;
@@ -20,12 +22,18 @@ public class FreezingAreaController : MonoBehaviour
     [SerializeField] private int alternatePressCycle = 2;
 
     float freezeCounter = 0;
-    bool playerFroze = false;
+    public bool playerFroze = false;
     float playerInitialMass;
+    InputAction unfrozeAction;
 
     private void Start()
     {
         playerInitialMass = player.GetComponent<Rigidbody2D>().mass;
+        unfrozeAction = playerInput.actions["Unfroze"];
+        unfrozeAction.started += UnfrozeAction_started;
+        unfrozeAction.performed += UnfrozeAction_performed;
+        unfrozeAction.canceled += UnfrozeAction_canceled;
+        Debug.Log($"The unfroze action {unfrozeAction}");
     }
 
     private void Update()
@@ -38,12 +46,12 @@ public class FreezingAreaController : MonoBehaviour
     void checkRapidMovement()
     {
         //player.GetComponent<PlayerInput>().actions.Disable();
-        InputAction moveAction = player.GetComponent<PlayerInput>().actions["move"];
+        //InputAction moveAction = player.GetComponent<PlayerInput>().actions["move"];
         //Debug.LogError($"input: {moveAction}");
-        if (moveAction.triggered)
-        {
+        //if (moveAction.triggered)
+        //{
             //Debug.LogError("Moving right now");
-        }
+        //}
         //Debug.LogError($"The move is: {moveAction.ReadValue<Vector2>()}");
     }
 
@@ -64,7 +72,6 @@ public class FreezingAreaController : MonoBehaviour
             {
                 playerFroze = true; // Call a function from the player controller here, or announce sth to the game controller
                 FreezePlayer();
-
             }
             freezeCounter += Time.deltaTime;
         }
@@ -75,16 +82,46 @@ public class FreezingAreaController : MonoBehaviour
     private void FreezePlayer()
     {
         //Debug.LogError($"The player is froze, initial mass {player.GetComponent<Rigidbody2D>().mass}");
-        player.GetComponent<PlayerInput>().actions.Disable();
+        //player.GetComponent<PlayerInput>().actions.Disable();
         player.GetComponent<Rigidbody2D>().mass = player.GetComponent<Rigidbody2D>().mass * frozenMassFactor;
+
+        unfrozeAction.started += UnfrozeAction_started;
+        unfrozeAction.performed += UnfrozeAction_performed;
+        unfrozeAction.canceled += UnfrozeAction_canceled;   //? Make sure to unsub later when unfroze
+
+        PlayerController playerController = player.GetComponent<PlayerController>();
+        //playerController.UnSubCurrentActionCallback();
+
+        Debug.Log("at least get here before");
+
+        Debug.Log("FREEZE NOWWWW");
+        playerController.SwitchMap();    //? Switching without unsubscribing, memory leak?
+
         //Debug.LogError($"After froze mass {player.GetComponent<Rigidbody2D>().mass}");
         // Activate freezing effect here
     }
 
+    private void UnfrozeAction_canceled(InputAction.CallbackContext ctx)
+    {
+        Debug.Log("Bring player back to static sprite");
+    }
+
+    private void UnfrozeAction_performed(InputAction.CallbackContext ctx)
+    {
+        Debug.Log("Unfroze the player, play a sound");
+        UnFrozePlayer();
+    }
+
+    private void UnfrozeAction_started(InputAction.CallbackContext ctx)
+    {
+        Debug.Log("Show character freezing sprite shaking in place");
+    }
+
+
     private void UnFrozePlayer()
     {
-        player.GetComponent<PlayerInput>().actions.Enable();
         player.GetComponent<Rigidbody2D>().mass = playerInitialMass;
+        playerFroze = false;
         //Deactive freezing effects
     }
 }

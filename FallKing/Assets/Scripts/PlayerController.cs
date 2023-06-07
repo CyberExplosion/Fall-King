@@ -3,9 +3,13 @@ using UnityEngine.Assertions;
 using UnityEngine.InputSystem;
 using Cinemachine;
 using UnityEngine.UIElements;
+using System;
 
 ////Todo: When player release the key, force the user to stop (currently using add force make the user keep sliding)
 ////TODO: The user will keep a minimal amount of momentum when stop?
+////TODO: remove down movement
+//TODO: add down as an option
+//TODO: move up and left right not working
 //! Add a huge force to the opposite moving direction?
 public class PlayerController : MonoBehaviour
 {
@@ -39,15 +43,16 @@ public class PlayerController : MonoBehaviour
     bool playerReleasedKey = true;
     float downSpeed;
 
+    private InputActionMap freezingMap;
     private PlayerInput playerInput;
-    private InputAction moveAction;
-
+    private InputActionMap originalActMap;
+    private InputAction playerAction;
 
     //Unsubscribe event when disable the script
     private void OnDisable()
     {
-        moveAction.started -= MoveAction_started;
-        moveAction.canceled -= MoveAction_canceled;
+        ResetAction();
+        UnSubCurrentActionCallback();
     }
 
     void Start()
@@ -61,16 +66,46 @@ public class PlayerController : MonoBehaviour
 
         //Register input
         playerInput = GetComponent<PlayerInput>();
-        moveAction = playerInput.actions["Move"];
+        playerAction = playerInput.actions["Move"];
+        originalActMap = playerInput.currentActionMap;
+        //testJumpAction = playerInput.actions["TestJump"];
 
-        moveAction.started += MoveAction_started;   //Subcribe to the event
-        moveAction.canceled += MoveAction_canceled;
+        playerAction.started += MoveAction_started;   //Subcribe to the event
+        playerAction.canceled += MoveAction_canceled;
+
+        //Testng
+        playerInput.actions["SwitchMap"].performed += SwitchMap;
+        freezingMap = playerInput.actions.FindActionMap("Freezing");
+    }
+
+    //THIS CALL FROM DIFFERNT CLASS
+    public void SwitchMap()
+    {
+        if (playerInput == null)
+        {
+            Debug.Log("This betch was null all this time");
+        }
+        else
+        {
+            Debug.Log($"Map should switch now into Freezing");
+            playerInput.SwitchCurrentActionMap("Freezing");
+        }
+    }
+
+    private void SwitchMap(InputAction.CallbackContext context)
+    {
+        //playerInput.actions.FindActionMap("Freezing").Enable();
+        //playerInput.actions.FindActionMap("Player").Disable();
+        Debug.Log("Map should switch now");
+        playerInput.actions.FindActionMap("Player").Disable();
+        freezingMap.Enable();
     }
 
     private void MoveAction_canceled(InputAction.CallbackContext ctx)
     {
         playerInputX = 0;
         playerInputY = 0;
+        playerReleasedKey = true;
         Debug.Log($"The player input {ctx.ReadValue<Vector2>()}");
     }
 
@@ -78,8 +113,71 @@ public class PlayerController : MonoBehaviour
     {
         playerInputX = ctx.ReadValue<Vector2>().x;
         playerInputY = ctx.ReadValue<Vector2>().y;
+        if (playerInputY < 0)
+        {
+            FindObjectOfType<SoundManager>().PlaySoundEffect("Boost");
+        }
         Debug.Log($"The player input {ctx.ReadValue<Vector2>()}");
     }
+
+    /// <summary>
+    /// Instead of Move left and right, we use different action
+    /// </summary>
+    /// <param name="differentAction">Action, with callback included, to use for the player</param>
+    //public void ChangeAction(InputAction differentAction)
+    //{
+    //    //? If you change action, make sure to unsubscribe old action callback
+    //    playerAction.started -= MoveAction_started;
+    //    playerAction.canceled -= MoveAction_canceled;
+
+    //    playerAction = differentAction;
+    //}
+
+    public void ChangeActionMap(InputActionMap differentActionMap)
+    {
+        playerInput.currentActionMap = differentActionMap;
+    }
+
+    public void ResetActionMap()
+    {
+        playerInput.currentActionMap = originalActMap;
+    }
+
+    /// <summary>
+    /// Reset the input action back to moving the player
+    /// </summary>
+    public void ResetAction()
+    {
+        playerAction = playerInput.actions["Move"];
+        playerAction.started += MoveAction_started;   //Subcribe to the event
+        playerAction.canceled += MoveAction_canceled;
+    }
+
+    public void UnSubCurrentActionCallback()
+    {
+        playerAction.started -= MoveAction_started;
+        playerAction.canceled -= MoveAction_canceled;
+    }
+
+    //public void RegisterMoveActionCallback(Action<InputAction.CallbackContext> startedCallback, Action<InputAction.CallbackContext> performedCallback, Action<InputAction.CallbackContext> cancledCallback)
+    //{
+    //    playerAction.started -= MoveAction_started;
+    //    playerAction.canceled -= MoveAction_canceled;
+
+    //    playerAction.started += startedCallback;
+    //    playerAction.performed += performedCallback;
+    //    playerAction.canceled += cancledCallback;
+    //}
+
+    //public void UnregisterMoveAction(Action<InputAction.CallbackContext> startedCallback, Action<InputAction.CallbackContext> performedCallback, Action<InputAction.CallbackContext> cancledCallback)
+    //{
+    //    playerAction.started -= startedCallback;
+    //    playerAction.performed -= performedCallback;
+    //    playerAction.canceled-= cancledCallback;
+
+    //    playerAction.started += MoveAction_started;
+    //    playerAction.canceled += MoveAction_canceled;
+    //}
 
     //void OnMove(InputValue movementValue)
     //{
@@ -117,6 +215,7 @@ public class PlayerController : MonoBehaviour
         //    this.transform.position = new Vector2(this.respawnPoint.position.x, this.respawnPoint.position.y);
         //}
     }
+
 
     void FixedUpdate()
     {   ////TODO: When hover key pressed, fan physics doesn't work due to manually changing velocity in controll

@@ -9,6 +9,7 @@ using UnityEngine.InputSystem;
 public class QuicklyWiggleInteraction : IInputInteraction
 {
     public float duration = 0.2f;
+    public int cycles = 2;
 
     /// <summary>
     /// Static constructor use to initialize data
@@ -38,7 +39,7 @@ public class QuicklyWiggleInteraction : IInputInteraction
         switch (context.phase)
         {
             case InputActionPhase.Waiting:
-                if ((int)context.control.ReadValueAsObject() == 1)
+                if (context.ReadValue<Vector2>() == new Vector2(1, 0))
                 {
                     context.Started();
                     context.SetTimeout(duration);
@@ -46,7 +47,7 @@ public class QuicklyWiggleInteraction : IInputInteraction
                 break;
 
             case InputActionPhase.Started:
-                if ((int)context.control.ReadValueAsObject() == -1)
+                if (context.ReadValue<Vector2>() == new Vector2(-1, 0))
                     context.Performed();
                 break;
         }
