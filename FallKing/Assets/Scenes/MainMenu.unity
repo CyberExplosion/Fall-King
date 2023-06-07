@@ -596,8 +596,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: PLAY
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 64d9ce3acd8584cac894b25ae60a0d7a, type: 2}
-  m_sharedMaterial: {fileID: 4295230943045120736, guid: 64d9ce3acd8584cac894b25ae60a0d7a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a7cde600695420149af5192d26cf72f2, type: 2}
+  m_sharedMaterial: {fileID: 4295230943045120736, guid: a7cde600695420149af5192d26cf72f2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -963,8 +963,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: FALL KING
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 64d9ce3acd8584cac894b25ae60a0d7a, type: 2}
-  m_sharedMaterial: {fileID: 4295230943045120736, guid: 64d9ce3acd8584cac894b25ae60a0d7a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a7cde600695420149af5192d26cf72f2, type: 2}
+  m_sharedMaterial: {fileID: 4295230943045120736, guid: a7cde600695420149af5192d26cf72f2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1387,8 +1387,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: QUIT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 64d9ce3acd8584cac894b25ae60a0d7a, type: 2}
-  m_sharedMaterial: {fileID: 4295230943045120736, guid: 64d9ce3acd8584cac894b25ae60a0d7a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a7cde600695420149af5192d26cf72f2, type: 2}
+  m_sharedMaterial: {fileID: 4295230943045120736, guid: a7cde600695420149af5192d26cf72f2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

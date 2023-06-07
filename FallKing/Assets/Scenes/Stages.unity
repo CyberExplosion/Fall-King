@@ -7641,6 +7641,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FlyingChaser (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8542270657427663571, guid: bb9e0e4ef94227e4eb3e2517a9447a84, type: 3}
+      propertyPath: m_Radius
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8861773045439249696, guid: bb9e0e4ef94227e4eb3e2517a9447a84, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -7659,11 +7663,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8861773045439249696, guid: bb9e0e4ef94227e4eb3e2517a9447a84, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22.24
+      value: 15.33
       objectReference: {fileID: 0}
     - target: {fileID: 8861773045439249696, guid: bb9e0e4ef94227e4eb3e2517a9447a84, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.2100067
+      value: 6.77
       objectReference: {fileID: 0}
     - target: {fileID: 8861773045439249696, guid: bb9e0e4ef94227e4eb3e2517a9447a84, type: 3}
       propertyPath: m_LocalPosition.z

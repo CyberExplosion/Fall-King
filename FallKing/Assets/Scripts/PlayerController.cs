@@ -9,7 +9,7 @@ using System;
 ////TODO: The user will keep a minimal amount of momentum when stop?
 ////TODO: remove down movement
 //TODO: add down as an option
-//TODO: move up and left right not working
+//TODO: move up and left right not workings
 //! Add a huge force to the opposite moving direction?
 public class PlayerController : MonoBehaviour
 {
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
         originalActMap = playerInput.currentActionMap;
         //testJumpAction = playerInput.actions["TestJump"];
 
-        playerAction.started += MoveAction_started;   //Subcribe to the event
+        playerAction.performed += MoveAction_performed;   //Subcribe to the event
         playerAction.canceled += MoveAction_canceled;
 
         //Testng
@@ -103,13 +103,16 @@ public class PlayerController : MonoBehaviour
 
     private void MoveAction_canceled(InputAction.CallbackContext ctx)
     {
-        playerInputX = 0;
-        playerInputY = 0;
-        playerReleasedKey = true;
+        if (ctx.ReadValue<Vector2>() == Vector2.zero)
+        {
+            playerReleasedKey = true;
+            playerInputX = 0;
+            playerInputY = 0;
+        }
         Debug.Log($"The player input {ctx.ReadValue<Vector2>()}");
     }
 
-    private void MoveAction_started(InputAction.CallbackContext ctx)
+    private void MoveAction_performed(InputAction.CallbackContext ctx)
     {
         playerInputX = ctx.ReadValue<Vector2>().x;
         playerInputY = ctx.ReadValue<Vector2>().y;
@@ -148,15 +151,15 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     public void ResetAction()
     {
-        playerAction = playerInput.actions["Move"];
-        playerAction.started += MoveAction_started;   //Subcribe to the event
-        playerAction.canceled += MoveAction_canceled;
+        //playerAction = playerInput.actions["Move"];
+        //playerAction.started += MoveAction_started;   //Subcribe to the event
+        //playerAction.canceled += MoveAction_canceled;
     }
 
     public void UnSubCurrentActionCallback()
     {
-        playerAction.started -= MoveAction_started;
-        playerAction.canceled -= MoveAction_canceled;
+        //playerAction.started -= MoveAction_started;
+        //playerAction.canceled -= MoveAction_canceled;
     }
 
     //public void RegisterMoveActionCallback(Action<InputAction.CallbackContext> startedCallback, Action<InputAction.CallbackContext> performedCallback, Action<InputAction.CallbackContext> cancledCallback)
