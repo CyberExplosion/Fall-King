@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 //? Froze = the player lose all control and player mass increase by a certain factor
 //? Unfroze = player shake left and right quick enough to break free
 
-//? WARNING = DO NOT USE THE DEFAULT PREFAB
+//? WARNING = DO NOT SET THE PREFAB's PLAYER CACHE TO THE PLAYER PREFAB (due to input manager shenanigans). Set it to the actual player in the game and not the player prefab
 public class FreezingAreaController : MonoBehaviour
 {
     [Header("Resource")]
