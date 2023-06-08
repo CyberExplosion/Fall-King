@@ -27,10 +27,11 @@ public class QuicklyWiggleInteraction : IInputInteraction
 
     public void Process(ref InputInteractionContext context)
     {
-        Debug.Log($"This thing works {context.control.ReadValueAsObject()}");
+        //Debug.Log($"This thing works {context.control.ReadValueAsObject()}");
 
         if (context.timerHasExpired)
         {
+            Debug.Log("Not wiggle quick enough");
             context.Canceled();
             return;
         }

@@ -51,8 +51,13 @@ public class PlayerController : MonoBehaviour
     //Unsubscribe event when disable the script
     private void OnDisable()
     {
-        ResetAction();
         UnSubCurrentActionCallback();
+    }
+
+    private void SubscribeActCallback()
+    {
+        playerAction.performed += MoveAction_performed;   //Subcribe to the event
+        playerAction.canceled += MoveAction_canceled;
     }
 
     void Start()
@@ -67,37 +72,22 @@ public class PlayerController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerAction = playerInput.actions["Move"];
         originalActMap = playerInput.currentActionMap;
-        //testJumpAction = playerInput.actions["TestJump"];
 
-        playerAction.performed += MoveAction_performed;   //Subcribe to the event
-        playerAction.canceled += MoveAction_canceled;
-
-        //Testng
-        playerInput.actions["SwitchMap"].performed += SwitchMap;
-        freezingMap = playerInput.actions.FindActionMap("Freezing");
+        SubscribeActCallback();
     }
 
     //THIS CALL FROM DIFFERNT CLASS
-    public void SwitchMap()
+    public void SwitchMap(string mapName)
     {
-        if (playerInput == null)
-        {
-            Debug.Log("This betch was null all this time");
-            playerInput = GetComponent<PlayerInput>();
-        }
-        Debug.Log($"Map should switch now into Freezing");
-        playerInput.actions.FindActionMap("Player").Disable();
-        freezingMap.Enable();
-        Debug.Log($"Curernt input map {playerInput.currentActionMap}");
-    }
-
-    private void SwitchMap(InputAction.CallbackContext context)
-    {
-        //playerInput.actions.FindActionMap("Freezing").Enable();
-        //playerInput.actions.FindActionMap("Player").Disable();
-        Debug.Log("Map should switch now");
-        playerInput.actions.FindActionMap("Player").Disable();
-        freezingMap.Enable();
+        //if (playerInput == null)
+        //{
+        //    Debug.Log("This betch was null all this time");
+        //    playerInput = GetComponent<PlayerInput>();
+        //}
+        //Debug.Log($"Map should switch now into Freezing");
+        UnSubCurrentActionCallback();
+        playerInput.SwitchCurrentActionMap(mapName);
+        Debug.Log($"Switched to input map {playerInput.currentActionMap.name}");
     }
 
     private void MoveAction_canceled(InputAction.CallbackContext ctx)
@@ -108,7 +98,7 @@ public class PlayerController : MonoBehaviour
             playerInputX = 0;
             playerInputY = 0;
         }
-        Debug.Log($"The player input {ctx.ReadValue<Vector2>()}");
+        //Debug.Log($"The player input {ctx.ReadValue<Vector2>()}");
     }
 
     private void MoveAction_performed(InputAction.CallbackContext ctx)
@@ -119,83 +109,21 @@ public class PlayerController : MonoBehaviour
         {
             FindObjectOfType<SoundManager>().PlaySoundEffect("Boost");
         }
-        Debug.Log($"The player input {ctx.ReadValue<Vector2>()}");
-    }
-
-    /// <summary>
-    /// Instead of Move left and right, we use different action
-    /// </summary>
-    /// <param name="differentAction">Action, with callback included, to use for the player</param>
-    //public void ChangeAction(InputAction differentAction)
-    //{
-    //    //? If you change action, make sure to unsubscribe old action callback
-    //    playerAction.started -= MoveAction_started;
-    //    playerAction.canceled -= MoveAction_canceled;
-
-    //    playerAction = differentAction;
-    //}
-
-    public void ChangeActionMap(InputActionMap differentActionMap)
-    {
-        playerInput.currentActionMap = differentActionMap;
+        //Debug.Log($"The player input {ctx.ReadValue<Vector2>()}");
     }
 
     public void ResetActionMap()
     {
         playerInput.SwitchCurrentActionMap("Player");
-    }
-
-    /// <summary>
-    /// Reset the input action back to moving the player
-    /// </summary>
-    public void ResetAction()
-    {
-        //playerAction = playerInput.actions["Move"];
-        //playerAction.started += MoveAction_started;   //Subcribe to the event
-        //playerAction.canceled += MoveAction_canceled;
+        Debug.Log($"The current action map now is {playerInput.currentActionMap.name}");
+        SubscribeActCallback();
     }
 
     public void UnSubCurrentActionCallback()
     {
-        //playerAction.started -= MoveAction_started;
-        //playerAction.canceled -= MoveAction_canceled;
+        playerAction.performed -= MoveAction_performed;
+        playerAction.canceled -= MoveAction_canceled;
     }
-
-    //public void RegisterMoveActionCallback(Action<InputAction.CallbackContext> startedCallback, Action<InputAction.CallbackContext> performedCallback, Action<InputAction.CallbackContext> cancledCallback)
-    //{
-    //    playerAction.started -= MoveAction_started;
-    //    playerAction.canceled -= MoveAction_canceled;
-
-    //    playerAction.started += startedCallback;
-    //    playerAction.performed += performedCallback;
-    //    playerAction.canceled += cancledCallback;
-    //}
-
-    //public void UnregisterMoveAction(Action<InputAction.CallbackContext> startedCallback, Action<InputAction.CallbackContext> performedCallback, Action<InputAction.CallbackContext> cancledCallback)
-    //{
-    //    playerAction.started -= startedCallback;
-    //    playerAction.performed -= performedCallback;
-    //    playerAction.canceled-= cancledCallback;
-
-    //    playerAction.started += MoveAction_started;
-    //    playerAction.canceled += MoveAction_canceled;
-    //}
-
-    //void OnMove(InputValue movementValue)
-    //{
-    //    Vector2 movementVector = movementValue.Get<Vector2>();
-    //    playerInputX = movementVector.x;
-    //    playerInputY = movementVector.y;
-    //    if (playerInputX == 0)
-    //    {
-    //        playerReleasedKey = true;
-    //    }
-    //    // Plays boost sound when player clicks down
-    //    if (playerInputY != 0 && playerInputY < 0)
-    //    {
-    //        FindObjectOfType<SoundManager>().PlaySoundEffect("Boost");
-    //    }
-    //}
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

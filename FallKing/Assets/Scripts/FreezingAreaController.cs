@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 //? Unfroze = player shake left and right quick enough to break free
 
 //? WARNING = DO NOT SET THE PREFAB's PLAYER CACHE TO THE PLAYER PREFAB (due to input manager shenanigans). Set it to the actual player in the game and not the player prefab
+//TODO: unfreeze the player when you die
 public class FreezingAreaController : MonoBehaviour
 {
     [Header("Resource")]
@@ -24,41 +25,35 @@ public class FreezingAreaController : MonoBehaviour
 
     PlayerController playerController;
     float freezeCounter = 0;
-    bool playerFroze = false;
+    bool unfreezePlayerNow = false;
     float playerInitialMass;
     InputAction unfrozeAction;
 
     int wiggleCounter = 0;
+
+    private void OnDisable()
+    {
+        RemoveInputCallback();
+    }
 
     private void Start()
     {
         playerController = player.GetComponent<PlayerController>();
         playerInitialMass = player.GetComponent<Rigidbody2D>().mass;
         unfrozeAction = playerController.GetComponent<PlayerInput>().actions["Unfroze"];
-        unfrozeAction.started += UnfrozeAction_started;
-        unfrozeAction.performed += UnfrozeAction_performed;
-        unfrozeAction.canceled += UnfrozeAction_canceled;
         Debug.Log($"The unfroze action {unfrozeAction}");
     }
 
     private void Update()
     {
-        //Debug.LogError($"initial mass {player.GetComponent<Rigidbody2D>().mass}");
-        checkRapidMovement();
+        if (unfreezePlayerNow)
+        {
+            UnFrozePlayer();
+            unfreezePlayerNow = false;
+        }
     }
 
-    //Player would need to rapidly pressing left and right to free themselves
-    void checkRapidMovement()
-    {
-        //player.GetComponent<PlayerInput>().actions.Disable();
-        //InputAction moveAction = player.GetComponent<PlayerInput>().actions["move"];
-        //Debug.LogError($"input: {moveAction}");
-        //if (moveAction.triggered)
-        //{
-            //Debug.LogError("Moving right now");
-        //}
-        //Debug.LogError($"The move is: {moveAction.ReadValue<Vector2>()}");
-    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -73,9 +68,9 @@ public class FreezingAreaController : MonoBehaviour
             //Debug.LogError($"The player velocity {collision.GetComponent<Rigidbody2D>().velocity}");
             collision.GetComponent<Rigidbody2D>().velocity = collision.GetComponent<Rigidbody2D>().velocity * speedFactor;
 
-            if (freezeCounter > freezeTime && !playerFroze)
+            if (freezeCounter > freezeTime)
             {
-                playerFroze = true; // Call a function from the player controller here, or announce sth to the game controller
+                //playerFroze = true; // Call a function from the player controller here, or announce sth to the game controller
                 FreezePlayer();
             }
             freezeCounter += Time.deltaTime;
@@ -90,34 +85,24 @@ public class FreezingAreaController : MonoBehaviour
         //player.GetComponent<PlayerInput>().actions.Disable();
         player.GetComponent<Rigidbody2D>().mass = player.GetComponent<Rigidbody2D>().mass * frozenMassFactor;
 
-        unfrozeAction.started += UnfrozeAction_started;
-        unfrozeAction.performed += UnfrozeAction_performed;
-        unfrozeAction.canceled += UnfrozeAction_canceled;   //? Make sure to unsub later when unfroze
-
-
-        //playerController.UnSubCurrentActionCallback();
-
-        Debug.Log("at least get here before");
-
-        playerController.SwitchMap();    //? Switching without unsubscribing, memory leak?
-
-        //Debug.LogError($"After froze mass {player.GetComponent<Rigidbody2D>().mass}");
-        // Activate freezing effect here
+        SubscribeInputCallback();   //Freezing actions
+        playerController.SwitchMap("Freezing");    //// Switching without unsubscribing, memory leak?
     }
 
     private void UnfrozeAction_canceled(InputAction.CallbackContext ctx)
     {
-        Debug.Log("Bring player back to static sprite");
+        Debug.Log("Bring player back to static sprite - The player didn't wiggle quick enough");
+        wiggleCounter = 0;
     }
 
     private void UnfrozeAction_performed(InputAction.CallbackContext ctx)
     {
         wiggleCounter++;
 
-        if (wiggleCounter > 3)
+        if (wiggleCounter > alternatePressCycle)
         {
             Debug.Log("UNFROZE THE PLAYER");
-            UnFrozePlayer();
+            unfreezePlayerNow = true;
         }
     }
 
@@ -126,12 +111,26 @@ public class FreezingAreaController : MonoBehaviour
         Debug.Log("Show character freezing sprite shaking in place");
     }
 
+    private void RemoveInputCallback()
+    {
+        unfrozeAction.started -= UnfrozeAction_started;
+        unfrozeAction.performed -= UnfrozeAction_performed;
+        unfrozeAction.canceled -= UnfrozeAction_canceled;
+    }
+
+    private void SubscribeInputCallback()
+    {
+        unfrozeAction.started += UnfrozeAction_started;
+        unfrozeAction.performed += UnfrozeAction_performed;
+        unfrozeAction.canceled += UnfrozeAction_canceled;
+    }
 
     private void UnFrozePlayer()
     {
         player.GetComponent<Rigidbody2D>().mass = playerInitialMass;
-        playerFroze = false;
-        //Deactive freezing effects
+        freezeCounter = 0;
+        RemoveInputCallback();
         playerController.ResetActionMap();
+        //Deactive freezing effects
     }
 }
