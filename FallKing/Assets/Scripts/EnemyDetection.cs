@@ -17,19 +17,20 @@ public class EnemyDetection : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         Debug.Log("The layer that involves with the contacts");
-        Collider2D[] res = new Collider2D[10];
-        int numContacts = collision.GetContacts(res);
-        for (int i = 0; i < numContacts; i++)
+        if (collision.CompareTag("Player"))
         {
-            Debug.Log($"The contact name is {res[i].name}");
+            Debug.Log("contact with player");
+            detectedPlayer = true;
         }
-        detectedPlayer = true;
         //Debug.Log("TRIGGER");
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        detectedPlayer = false;
-        //Debug.Log("EXITTTT");
+        if (collision.CompareTag("Player"))
+        {
+            detectedPlayer = false;
+            Debug.Log("EXITTTT");
+        }
     }
 }

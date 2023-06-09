@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2193362000930798977}
   - component: {fileID: 203037179994709278}
   m_Layer: 2
-  m_Name: FlyingChaser
+  m_Name: PhysicalFlyingChaser
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

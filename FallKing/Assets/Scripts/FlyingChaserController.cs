@@ -4,8 +4,11 @@ using UnityEngine;
 //TODO: add detection range prefab
 public class FlyingChaserController : MonoBehaviour
 {
-    [Header("Pathfinding")]
+    [Header("Logic")]
     [SerializeField] Transform target;
+    [SerializeField] EnemyDetection detectorScript;
+
+    [Header("Pathfinding")]
     [SerializeField] float pathUpdateInterval = 1f;    // time between each path calculation
     [SerializeField] float distThresholdToGetNextWaypoint = 3f; // how far the user need to be before moving to the next way point
 
@@ -30,6 +33,7 @@ public class FlyingChaserController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        bool detection = detectorScript.detectedPlayer;
         if (path == null)
         {
             //Debug.Log("The path is null");
@@ -41,19 +45,23 @@ public class FlyingChaserController : MonoBehaviour
             return;
         }
 
-        // Direction calculation
-        Vector2 toNextWaypointDir = ((Vector2)(path.vectorPath[currentWaypoint]) - rb.position).normalized;
-        Vector2 moveForce = toNextWaypointDir * speed;
-
-        // Movement
-        rb.AddForce(moveForce);
-        //Debug.Log($"The move force {moveForce}");
-
-        // Check if on the way to next way point
-        float distToNextWaypoint = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
-        if (distToNextWaypoint < distThresholdToGetNextWaypoint)  // increment target waypoint when pass the threshold
+        if (detection)
         {
-            currentWaypoint++;
+            Debug.Log("Detect the player from flying");
+            // Direction calculation
+            Vector2 toNextWaypointDir = ((Vector2)(path.vectorPath[currentWaypoint]) - rb.position).normalized;
+            Vector2 moveForce = toNextWaypointDir * speed;
+
+            // Movement
+            rb.AddForce(moveForce);
+            //Debug.Log($"The move force {moveForce}");
+
+            // Check if on the way to next way point
+            float distToNextWaypoint = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+            if (distToNextWaypoint < distThresholdToGetNextWaypoint)  // increment target waypoint when pass the threshold
+            {
+                currentWaypoint++;
+            }
         }
     }
 
