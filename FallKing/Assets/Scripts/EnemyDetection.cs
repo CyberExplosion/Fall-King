@@ -14,15 +14,23 @@ public class EnemyDetection : MonoBehaviour
         transform.position = physicalBodyPos.position;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        detectedPlayer = true;
+        Debug.Log("The layer that involves with the contacts");
+        if (collision.CompareTag("Player"))
+        {
+            Debug.Log("contact with player");
+            detectedPlayer = true;
+        }
         //Debug.Log("TRIGGER");
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        detectedPlayer = false;
-        //Debug.Log("EXITTTT");
+        if (collision.CompareTag("Player"))
+        {
+            detectedPlayer = false;
+            Debug.Log("EXITTTT");
+        }
     }
 }
