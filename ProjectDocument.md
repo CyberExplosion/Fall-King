@@ -31,8 +31,8 @@ You should replay any **bold text** with your relevant information. Liberally us
 ## User Interface
 
 ### Student Information
-*Name: Jehryn Rillon*
-*Email: jmrillon@ucdavis.edu*
+*Name: Jehryn Rillon*   
+*Email: jmrillon@ucdavis.edu*   
 *Github: jmo-gh*
 
 ### Menus
@@ -70,8 +70,8 @@ Implementing the typewriter animation required the use of a `Coroutine`, specifi
 Lastly, `StartTyping()` is called once the `Player` object collides with the `LevelBoundary` which we check in the [OnTriggerEnter2D](https://github.com/CyberExplosion/Fall-King/blob/5ef40d1162ed6164906d221db77a068eeaa471ec/FallKing/Assets/Scripts/StageNameOverlay.cs#L47).
 
 #### Resources Used
-[Main Menu](https://www.youtube.com/watch?v=IuuKUaZQiSU)
-[Pause Menu](https://www.youtube.com/watch?v=9tsbUoFfAgo&t=759s)
+[Main Menu](https://www.youtube.com/watch?v=IuuKUaZQiSU)    
+[Pause Menu](https://www.youtube.com/watch?v=9tsbUoFfAgo&t=759s)    
 [Unity Canvas docs](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/UICanvas.html)
 
 
