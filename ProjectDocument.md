@@ -128,7 +128,28 @@ Lastly, `StartTyping()` is called once the `Player` object collides with the `Le
 
 ## Narrative Design
 
-**Document how the narrative is present in the game via assets, gameplay systems, and gameplay.** 
+### Student Information
+*Name: Jehryn Rillon*   
+*Email: jmrillon@ucdavis.edu*   
+*Github: jmo-gh*
+
+Fall King features a Knight tasked with saving the Princess who was been taken underground. Each underground layer features their own set of obstacles in the form of new environmental hazards or enemies. The Knight must strategically and precisely descend down to the Princess to rescue her, dodging platforms and maneuvering around enemies along the way.
+
+The level structure is broken down into 5 stages, with each stage consisting of 3 to 5 levels identified as `STAGE_NUM-LEVEL_NUM` (for example, Level 1 of Stage 1 is denoted as `1-1`). Each Stage is built around its own unique gameplay mechanic and theme, as a result we have a stage outline as follows:
+
+* Stage 1: Tutorial stage, learning the controls
+* Stage 2: Sand Biome - learning about enemies, slow zone
+* Stage 3: New mechanic: limited visibility (spotlight effect)
+* Stage 4: Snow biome -  Freeze and wind zones
+* Stage 5: Lava biome - Fire zone + fireballs
+
+One of the challenges that we faced as a team was finding assets that matched the aesthetic and feel that we were trying to achieve. None of us were experienced with animation or visuals with respect to game design, so the idea of creating our own sprites for characters was out of the question. Moreover, we didn't want to buy any assets from the Unity Store so we opted into using the free assets listed on the Unity store that matched our narrative design as much as possible. Due to this limitation of assets, we were not able to reach the creativity and atmosphere for level design that we hoped for.
+
+However, we didn't let this stop us from creating what we thought was the best we could do with what we had available. Following the outline of stages above, we made sure to use assets that following the theme of the stage. For instance, in `Stage 1` we use dirt tiles with a grass layer on top to indicate the beginning of the underground layer. The simplicity of the `Stage 1` tileset allows the player to focus on the main purpose of the stage which is to learn the core gameplay mechanics. As for the following stages, we made sure to use tilesets that match the biome of that respective stage, i.e. for the sand biome we used a desert tileset and the snow biome we used an iceblock tileset.
+
+Aside from assets, we also made the core gameplay mechanic of gliding/descending follow suit with the narrative design of the game. Our initial inspiration was from the rage platformer Jump King, where a Knight has to climb its way up a tower to save a Princess. We decided to take that approach but in the opposite direction where we have to descend towards the Princess. One of the most notable features in Jump King is the simplicity of the gameplay mechanics, so we wanted to make sure that we reached that same level of simplicity by making the movement system easy to understand and simple enough in terms of user input. The main objective of the game is also quite simple, *save the Princess.* Portraying such a simple objective within a game that has very simple mechanics indulges the player to completing due to it being so trivial.
+
+Through these outlets, we were able to create a narrative design around our game that the player can follow and immerse themselves within.
 
 ## Press Kit and Trailer
 
