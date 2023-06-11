@@ -20729,6 +20729,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190887ab01b3447fbb00864f581eabb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 211147166}
+  textValue: Don't forget to wiggle!
 --- !u!1 &403185704
 GameObject:
   m_ObjectHideFlags: 0
@@ -20816,7 +20818,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 403185704}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.100000024, y: -154.7, z: -10}
+  m_LocalPosition: {x: -0.100000024, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21638,6 +21640,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190887ab01b3447fbb00864f581eabb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 211147166}
+  textValue: Learning... how to fall
 --- !u!114 &587960995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49361,6 +49365,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190887ab01b3447fbb00864f581eabb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 211147166}
+  textValue: Enemies... everywhere
 --- !u!1 &1245204215
 GameObject:
   m_ObjectHideFlags: 0
@@ -95961,7 +95967,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 1043824623}
+  m_Follow: {fileID: 179537950}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 15
@@ -95989,7 +95995,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056828089}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.100000024, y: -154.7, z: -10}
+  m_LocalPosition: {x: -0.100000024, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -96009,6 +96015,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190887ab01b3447fbb00864f581eabb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 0}
+  textValue: 
 --- !u!1 &2064148653
 GameObject:
   m_ObjectHideFlags: 0
@@ -102906,6 +102914,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190887ab01b3447fbb00864f581eabb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMeshPro: {fileID: 211147166}
+  textValue: Limited visibility!
 --- !u!1 &2104760055
 GameObject:
   m_ObjectHideFlags: 0
@@ -103448,11 +103458,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1300323644946961164, guid: 02e757782c0d9ae40a2c04032b886bb5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.04
+      value: -0.07
       objectReference: {fileID: 0}
     - target: {fileID: 1300323644946961164, guid: 02e757782c0d9ae40a2c04032b886bb5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -141.94
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1300323644946961164, guid: 02e757782c0d9ae40a2c04032b886bb5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -103514,6 +103524,10 @@ PrefabInstance:
       propertyPath: glidingAcceleration
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 6315564730935765306, guid: 02e757782c0d9ae40a2c04032b886bb5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: dd6d3598f053e4ae194771768ea37cff, type: 2}
     - target: {fileID: 6315564730935765306, guid: 02e757782c0d9ae40a2c04032b886bb5, type: 3}
       propertyPath: m_SortingLayer
       value: 4
