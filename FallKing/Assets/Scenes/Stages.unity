@@ -103509,20 +103509,48 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3767733046050246462, guid: 02e757782c0d9ae40a2c04032b886bb5, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3767733046050246462, guid: 02e757782c0d9ae40a2c04032b886bb5, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 3767733046050246462, guid: 02e757782c0d9ae40a2c04032b886bb5, type: 3}
       propertyPath: m_GravityScale
       value: 0.7
       objectReference: {fileID: 0}
+    - target: {fileID: 3767733046050246462, guid: 02e757782c0d9ae40a2c04032b886bb5, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5703892126445862432, guid: 02e757782c0d9ae40a2c04032b886bb5, type: 3}
       propertyPath: timeToStop
-      value: 1.5
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5703892126445862432, guid: 02e757782c0d9ae40a2c04032b886bb5, type: 3}
+      propertyPath: virtualCamera
+      value: 
+      objectReference: {fileID: 2056828090}
+    - target: {fileID: 5703892126445862432, guid: 02e757782c0d9ae40a2c04032b886bb5, type: 3}
+      propertyPath: maxFallMagnitude
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5703892126445862432, guid: 02e757782c0d9ae40a2c04032b886bb5, type: 3}
       propertyPath: maxMoveMagnitude
-      value: 50
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5703892126445862432, guid: 02e757782c0d9ae40a2c04032b886bb5, type: 3}
+      propertyPath: hoverFallMagnitude
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5703892126445862432, guid: 02e757782c0d9ae40a2c04032b886bb5, type: 3}
       propertyPath: glidingAcceleration
-      value: 100
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5815826273387314925, guid: 02e757782c0d9ae40a2c04032b886bb5, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6315564730935765306, guid: 02e757782c0d9ae40a2c04032b886bb5, type: 3}
       propertyPath: m_Sprite
@@ -103536,6 +103564,30 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -831291001
       objectReference: {fileID: 0}
+    - target: {fileID: 6489244899026521415, guid: 02e757782c0d9ae40a2c04032b886bb5, type: 3}
+      propertyPath: virtualCamera
+      value: 
+      objectReference: {fileID: 2056828090}
+    - target: {fileID: 6489244899026521415, guid: 02e757782c0d9ae40a2c04032b886bb5, type: 3}
+      propertyPath: limitedVisbilityLevels.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6489244899026521415, guid: 02e757782c0d9ae40a2c04032b886bb5, type: 3}
+      propertyPath: limitedVisbilityLevels.Array.data[0]
+      value: 
+      objectReference: {fileID: 1085851235}
+    - target: {fileID: 6489244899026521415, guid: 02e757782c0d9ae40a2c04032b886bb5, type: 3}
+      propertyPath: limitedVisbilityLevels.Array.data[1]
+      value: 
+      objectReference: {fileID: 1565545165}
+    - target: {fileID: 6489244899026521415, guid: 02e757782c0d9ae40a2c04032b886bb5, type: 3}
+      propertyPath: limitedVisbilityLevels.Array.data[2]
+      value: 
+      objectReference: {fileID: 1415473590}
+    - target: {fileID: 6489244899026521415, guid: 02e757782c0d9ae40a2c04032b886bb5, type: 3}
+      propertyPath: limitedVisbilityLevels.Array.data[3]
+      value: 
+      objectReference: {fileID: 258106660}
     - target: {fileID: 7855461483372782830, guid: 02e757782c0d9ae40a2c04032b886bb5, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
       value: 1

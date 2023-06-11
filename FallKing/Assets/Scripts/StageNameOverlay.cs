@@ -8,6 +8,7 @@ public class StageNameOverlay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textMeshPro;
     [SerializeField] private string textValue;
 
+
     private float typingSpeed = 0.1f;
     private float animationLength = 3.0f;
     private Coroutine typingRoutine;
