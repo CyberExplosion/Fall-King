@@ -64,7 +64,11 @@ Lastly, in order to assign functionality to these buttons we had to create an em
 The design of the pause menu was based on the design of main menu, see `Resources Used` for inspiration.
 
 #### Victory Menu
+The victory menu (viewable when player collides with Princess) consists of a button [Return Home](https://github.com/CyberExplosion/Fall-King/blob/702af631bc49e0b5cd21c61c89789b4d5b1fffa9/FallKing/Assets/Scripts/PauseManager.cs#L61) and a UI panel with a informing the player that they have rescued the Princess. The Return Home button uses the same `onClick()` event as the pause menu's Give Up button since they both return the player to the main menu. 
 
+Similar to the pause menu, the victory menu is a `Canvas` object that overlays on top of the camera and by default is disabled. The script [VictoryManager.cs](https://github.com/CyberExplosion/Fall-King/blob/702af631bc49e0b5cd21c61c89789b4d5b1fffa9/FallKing/Assets/Scripts/VictoryManager.cs#L1) is attached to the `GameObject Princess` and monitors when a collision is made with the player. This collision then enables the Victory Menu canvas and overlays the UI on screen.
+
+The design of the victory menu was based on the design of main menu, see `Resources Used` for inspiration.
 
 ### Other UI Elements
 
