@@ -26,9 +26,10 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 ## Producer
 
-**Describe the steps you took in your role as producer. Typical items include group scheduling mechanism, links to meeting notes, descriptions of team logistics problems with their resolution, project organization tools (e.g., timelines, depedency/task tracking, Gantt charts, etc.), and repository management methodology.**
 Our team realized early in the production process that our varying schedules would make it hard to pair-program and meet regularly until later in the quarter. In lieu of regular meetings, we made sure to clearly define tasks within the development process and created a Discord group chat as a "drop in" space, where team members would start calls when needed for decision making and debugging. This worked well for us because it was rare that an issue or decision required all hands on deck. 
+
 Some roles had to wait for others before they could begin their work (which was reflected on our original Gantt chart), so those waiting to start their role's task acted as floating helpers to whoever was in progress with their task. Our major logistical issue arose while designing the main player's movement, since we had not fully figured out how we wanted that mechanism to work in relation to the rest of the game. At one point, there was confusion between within the team regarding how to best accomplist the desired player movement feel, and we ended up with two scripts from two authors. We as a team value each member's contribution, so instead of voting or making a hasty descision for which script to use, we deliberated as a team to understand the differences between the two files and hopped on a long call to combine their strengths. 
+
 Organizing and managing the repository was not a struggle for us, since a convention for the structure of the game components was agreed upon beforehand, and clarification was shared continually throughout the development process. One great aspect of our workflow was to only push changes when something was fixed or improved, and to notify the team groupchat when a push to the repo was made (so that others could check for conflicts or be ready to pull before adding their own changes)
 
 ## User Interface
