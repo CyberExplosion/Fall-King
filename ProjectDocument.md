@@ -25,6 +25,11 @@ Here is an example:
 You should replay any **bold text** with your relevant information. Liberally use the template when necessary and appropriate.
 
 ## Producer
+Student Information
+Name: Rijul Saxena
+Email: rsax@ucdavis.edu
+Github: rsax1
+
 
 Our team realized early in the production process that our varying schedules would make it hard to pair-program and meet regularly until later in the quarter. In lieu of regular meetings, we made sure to clearly define tasks within the development process and created a Discord group chat as a "drop in" space, where team members would start calls when needed for decision making and debugging. This worked well for us because it was rare that an issue or decision required all hands on deck. 
 
@@ -102,6 +107,11 @@ Lastly, `StartTyping()` is called once the `Player` object collides with the `Le
 **Describe the basics of movement and physics in your game. Is it the standard physics model? What did you change or modify? Did you make your movement scripts that do not use the physics system?**
 
 ## Animation and Visuals
+Student Information
+Name: Rijul Saxena
+Email: rsax@ucdavis.edu
+Github: rsax1
+
 
 To build a world for our game, we drew inspiration from 2D platformers, like the Mario games and Jump King. Our narrative design follows a knight moving deeper and deeper through obstacles in search of his princess. We have multiple Biomes divided between our stages and levels, including forests, underground caves, cold tundras, and volcanic terrain. In order to match these requirements, the Unity Asset Store was a key resource for us to get all of our visuals. 
  
