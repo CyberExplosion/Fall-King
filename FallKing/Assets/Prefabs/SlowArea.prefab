@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1846105864664841633}
   - component: {fileID: 7610596937666747337}
   m_Layer: 0
-  m_Name: Birds
+  m_Name: SlowArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -13,7 +13,10 @@ public class FreezingAreaController : MonoBehaviour
 {
     [Header("Resource")]
     [SerializeField] private GameObject player;
+    [Tooltip("The sprite that will slowly fade in as player start freezing up")]
+    [SerializeField] private SpriteRenderer frozenPlayerBlock;
 
+    [Header("Freezing")]
     [Tooltip("The factor to apply to player current movement speed")]
     [SerializeField] private float speedFactor = 1.0f;
     [Tooltip("The time it takes for the target to become frozen in this area")]
@@ -24,11 +27,12 @@ public class FreezingAreaController : MonoBehaviour
     [SerializeField] private int alternatePressCycle = 2;
 
     PlayerController playerController;
+    InputAction unfrozeAction;
+    Color initialFrozenBlkColor;
     float freezeCounter = 0;
+    float playerInitialMass;
     bool unfreezePlayerNow = false;
     bool playerFroze = false;
-    float playerInitialMass;
-    InputAction unfrozeAction;
 
     int wiggleCounter = 0;
 
@@ -42,7 +46,11 @@ public class FreezingAreaController : MonoBehaviour
         playerController = player.GetComponent<PlayerController>();
         playerInitialMass = player.GetComponent<Rigidbody2D>().mass;
         unfrozeAction = playerController.GetComponent<PlayerInput>().actions["Unfroze"];
+        initialFrozenBlkColor = player.transform.parent.transform.Find("FrozenPlayerBlock").GetComponent<SpriteRenderer>().color;
+        freezeCounter = 0;
         Debug.Log($"The unfroze action {unfrozeAction}");
+
+        Debug.Log($"Initial color {initialFrozenBlkColor}");
     }
 
     private void Update()
@@ -52,6 +60,8 @@ public class FreezingAreaController : MonoBehaviour
             UnFrozePlayer();
             unfreezePlayerNow = false;
             playerFroze = false;
+            // return to normal sprite
+            player.transform.parent.transform.Find("FrozenPlayerBlock").GetComponent<SpriteRenderer>().color = initialFrozenBlkColor;
         }
     }
 
@@ -75,10 +85,23 @@ public class FreezingAreaController : MonoBehaviour
                 playerFroze = true; // Call a function from the player controller here, or announce sth to the game controller
                 FreezePlayer();
             }
+
+            player.transform.parent.transform.Find("FrozenPlayerBlock").GetComponent<SpriteRenderer>().color = Color.Lerp(initialFrozenBlkColor, new Color(initialFrozenBlkColor.r, initialFrozenBlkColor.g, initialFrozenBlkColor.b, 1), freezeCounter / freezeTime);
+            //Debug.Log($"The counter is {freezeCounter / freezeTime}");
+            //Debug.Log($"The value of the sprite color {player.transform.parent.transform.Find("FrozenPlayerBlock").GetComponent<SpriteRenderer>().color}");
+
             freezeCounter += Time.deltaTime;
         }
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!playerFroze)
+        {
+            // return to normal sprite
+            player.transform.parent.transform.Find("FrozenPlayerBlock").GetComponent<SpriteRenderer>().color = initialFrozenBlkColor;
+        }
+    }
 
     //Freeze = keep the same velocity and momentum, but player cannot control anymore
     private void FreezePlayer()

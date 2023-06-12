@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2075372899096575154
 SpriteRenderer:
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  frozenPlayerBlock: {fileID: 6580601573437964116, guid: ef6dce0eb3aea5e4490248e5997a8aeb, type: 3}
   speedFactor: 1
   freezeTime: 5
   frozenMassFactor: 1.5

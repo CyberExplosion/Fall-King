@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour
                     fightAgainstWind = true;
                 }
             }
-            Debug.Log($"The current velocity of the player {rigidBody.velocity}");
+            //Debug.Log($"The current velocity of the player {rigidBody.velocity}");
         }
     }
 
@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Wind"))
         {
             fightAgainstWind = false;
-            maxMoveMagnitude = initialMaxMoveMagnitude;
+            //maxMoveMagnitude = initialMaxMoveMagnitude;
         }
     }
 
