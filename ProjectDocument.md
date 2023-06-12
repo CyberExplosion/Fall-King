@@ -54,6 +54,8 @@ The UI panels (the background panels for the buttons) were made using a generic 
 
 All other menus within our game are created using the same method since we are able to resize the UI panel as needed.
 
+We also added an infinite scrolling background to the main menu to give the main menu a little more life. This was accomplished within [Scroller.cs](https://github.com/CyberExplosion/Fall-King/blob/b11fed4f26b5265db5a136b9f1315499957421a8/FallKing/Assets/Scripts/Scroller.cs#L1) which is attached to `GameObject Background` within the `MainMenu` scene. The scroll effect is achieved by slightly moving the texture coordinates of the background image based on the given `float x` and `float y` fields of the Scoller script. These values are also multiplied to the new coordinates in conjunction with `Time.deltaTime` to ensure smooth scroll movement.
+
 See the `Resources Used` section for inspiration on the Main Menu implementation.
 
 #### How to Play Menu
@@ -107,6 +109,7 @@ Lastly, `StartTyping()` is called once the `Player` object collides with the `Le
 **Describe the basics of movement and physics in your game. Is it the standard physics model? What did you change or modify? Did you make your movement scripts that do not use the physics system?**
 
 ## Animation and Visuals
+
 ### Student Information
 *Name: Rijul Saxena*   
 *Email: rsax@ucdavis.edu*   
