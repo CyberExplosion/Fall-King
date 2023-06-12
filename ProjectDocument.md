@@ -27,6 +27,7 @@ You should replay any **bold text** with your relevant information. Liberally us
 ## Producer
 
 **Describe the steps you took in your role as producer. Typical items include group scheduling mechanism, links to meeting notes, descriptions of team logistics problems with their resolution, project organization tools (e.g., timelines, depedency/task tracking, Gantt charts, etc.), and repository management methodology.**
+Our team realized early in the production process that our varying schedules would make it hard to pair-program and meet regularly until later in the quarter. In lieu of regular meetings, we made sure to clearly define tasks within the development process and created a Discord group chat as a "drop in" space.
 
 ## User Interface
 
@@ -99,9 +100,15 @@ Lastly, `StartTyping()` is called once the `Player` object collides with the `Le
 
 ## Animation and Visuals
 
-**List your assets including their sources and licenses.**
+To build a world for our game, we drew inspiration from 2D platformers, like the Mario games and Jump King. Our narrative design follows a knight moving deeper and deeper through obstacles in search of his princess. We have multiple Biomes divided between our stages and levels, including forests, underground caves, cold tundras, and volcanic terrain. In order to match these requirements, the Unity Asset Store was a key resource for us to get all of our visuals. 
+ 
+* Knight, clouds, plants, extra terrain elements: https://assetstore.unity.com/packages/2d/environments/flat-platformer-template-108101
+* Terrain Tiles: https://assetstore.unity.com/publishers/48778
+* Icy visuals: https://assetstore.unity.com/packages/2d/environments/2d-ice-world-106818
+* Magnets and other obstacles: https://assetstore.unity.com/packages/2d/characters/pixel-adventure-1-155360
 
-**Describe how your work intersects with game feel, graphic design, and world-building. Include your visual style guide if one exists.**
+
+We went through many iterations of asset themes for this project. Initially we thought of sticking to a medieval theme to match our main character, the knight, but instead decided as a team that we wanted more variety and color for a more interesting game feel. To achieve this, we decided on varying terrain types and imported assets according to our narrative plan. It was easy to find sprites for our forest biome, and eventually made tile palettes for the caves and cold weather stages with smaller asset packs. One issue that came up during the importing process was sizing and gameplay interaction, so a recurring topic during team meetings was sizing and assigning mass to elements of our game's world should be in relation to the man character.
 
 ## Input
 
