@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 public class QuicklyWiggleInteraction : IInputInteraction
 {
-    [SerializeField] private float duration = 0.2f;
+    [SerializeField] private float duration = 0.5f;
 
     /// <summary>
     /// Static constructor use to initialize data

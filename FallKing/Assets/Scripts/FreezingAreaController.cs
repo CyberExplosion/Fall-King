@@ -26,6 +26,7 @@ public class FreezingAreaController : MonoBehaviour
     PlayerController playerController;
     float freezeCounter = 0;
     bool unfreezePlayerNow = false;
+    bool playerFroze = false;
     float playerInitialMass;
     InputAction unfrozeAction;
 
@@ -50,6 +51,7 @@ public class FreezingAreaController : MonoBehaviour
         {
             UnFrozePlayer();
             unfreezePlayerNow = false;
+            playerFroze = false;
         }
     }
 
@@ -68,9 +70,9 @@ public class FreezingAreaController : MonoBehaviour
             //Debug.LogError($"The player velocity {collision.GetComponent<Rigidbody2D>().velocity}");
             collision.GetComponent<Rigidbody2D>().velocity = collision.GetComponent<Rigidbody2D>().velocity * speedFactor;
 
-            if (freezeCounter > freezeTime)
+            if (freezeCounter > freezeTime && !playerFroze)
             {
-                //playerFroze = true; // Call a function from the player controller here, or announce sth to the game controller
+                playerFroze = true; // Call a function from the player controller here, or announce sth to the game controller
                 FreezePlayer();
             }
             freezeCounter += Time.deltaTime;

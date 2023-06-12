@@ -5,18 +5,11 @@ using Cinemachine;
 using UnityEngine.UIElements;
 using System;
 
-////Todo: When player release the key, force the user to stop (currently using add force make the user keep sliding)
-////TODO: The user will keep a minimal amount of momentum when stop?
-////TODO: remove down movement
 //TODO: add down as an option
 //TODO: move up and left right not workings
 //! Add a huge force to the opposite moving direction?
 public class PlayerController : MonoBehaviour
 {
-    [Header("Logic")]
-    [SerializeField] CinemachineVirtualCamera virtualCamera;
-    [SerializeField] bool deathOnCollision = true;
-
     [Header("Horizontal Physics")]
     [Tooltip("Acceleration to the top speed")]
     [SerializeField] private float glidingAcceleration = 15f;
@@ -35,8 +28,6 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Transform respawnLevel;
     
-    private Transform respawnPoint;
-    //private CinemachineVirtualCamera virtualCamera;
     private Rigidbody2D rigidBody;
     private float initialGravity;
     private float playerInputX, playerInputY;
@@ -64,7 +55,6 @@ public class PlayerController : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         initialGravity = rigidBody.gravityScale;
-        //Debug.LogError($"The gravity force {initialGravity} and the hoverForce {hoverForce}");
         Assert.IsTrue(hoverFallMagnitude > 0);  //Cannot have negative hover force for later calculation nor too big either
                                                 //this.virtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
 
@@ -79,12 +69,6 @@ public class PlayerController : MonoBehaviour
     //THIS CALL FROM DIFFERNT CLASS
     public void SwitchMap(string mapName)
     {
-        //if (playerInput == null)
-        //{
-        //    Debug.Log("This betch was null all this time");
-        //    playerInput = GetComponent<PlayerInput>();
-        //}
-        //Debug.Log($"Map should switch now into Freezing");
         UnSubCurrentActionCallback();
         playerInput.SwitchCurrentActionMap(mapName);
         Debug.Log($"Switched to input map {playerInput.currentActionMap.name}");
@@ -98,7 +82,6 @@ public class PlayerController : MonoBehaviour
             playerInputX = 0;
             playerInputY = 0;
         }
-        //Debug.Log($"The player input {ctx.ReadValue<Vector2>()}");
     }
 
     private void MoveAction_performed(InputAction.CallbackContext ctx)
@@ -109,7 +92,6 @@ public class PlayerController : MonoBehaviour
         {
             FindObjectOfType<SoundManager>().PlaySoundEffect("Boost");
         }
-        //Debug.Log($"The player input {ctx.ReadValue<Vector2>()}");
     }
 
     public void ResetActionMap()
@@ -136,10 +118,7 @@ public class PlayerController : MonoBehaviour
 
 
     void FixedUpdate()
-    {   ////TODO: When hover key pressed, fan physics doesn't work due to manually changing velocity in controll
-        ////TODO: Stop using Add force to control player hovering speed? Instead change the gravity? Clamp the velocity as needed
-        ////? Currently if the player is shoot up by fan while holding hover, the lesser gravity will allow to shoot up even further
-
+    {
         if (PauseManager.paused) return;
 
         // Player release moving key, add a force to the opposite moving direction
@@ -147,11 +126,7 @@ public class PlayerController : MonoBehaviour
         {
             //! Reverse impulse
             var reverseImpulse = -(rigidBody.mass * rigidBody.velocity.x) / timeToStop;     // negative to represent opposite force
-            //Debug.Log($"The impulse stop force {reverseImpulse}");
-            //Debug.LogError("Only print once");
-            //Debug.Log($"The current normalized velocity {rigidBody.velocity.normalized.x}");
             rigidBody.AddForce(new Vector2(reverseImpulse * Mathf.Abs(rigidBody.velocity.normalized.x), 0), ForceMode2D.Impulse);
-            //Debug.Log($"The force being add {new Vector2(reverseImpulse * Mathf.Abs(rigidBody.velocity.normalized.x), 0)}");
             playerReleasedKey = false;
         }
 
@@ -161,38 +136,28 @@ public class PlayerController : MonoBehaviour
             if (rigidBody.velocity.y < 0)
             {
                 downSpeed = hoverFallMagnitude;
-                //var moveWithUp = new Vector2(movementX, 0); //? Seperate add force horizontal and vertical later
-                //rigidBody.AddForce(moveWithUp * glidingAcceleration);
-                //rigidBody.velocity = new Vector2(rigidBody.velocity.x, -hoverForce);  //! Force the player to have only one speed
             }
         }
         else
-        {   ////! Allow player to hold down to go down faster -> Will be a problem since the downspeed is clamped below
+        {
             var movementY = playerInputY;
             rigidBody.gravityScale = initialGravity;
             var moveDown = new Vector2(0, movementY * downKeySpeedFactor);
             rigidBody.AddForce(moveDown);
-            //New audio for boost
-            //FindObjectOfType<SoundManager>().PlaySoundEffect("Boost");
-            //Debug.Log($"The velocity without press up {moveDown}");
         }
 
         //! Now add horizontal force
         float movementX = playerInputX;
         rigidBody.AddForce(new Vector2(movementX, 0) * glidingAcceleration);
 
-        //Clamp the falling speed AND left/right movement IF falling AND the player not holding down to go down faster
         if (rigidBody.velocity.y < 0 && playerInputY >= 0)
         {
             rigidBody.velocity = new Vector2(Mathf.Clamp(rigidBody.velocity.x, -maxMoveMagnitude, maxMoveMagnitude), Mathf.Clamp(rigidBody.velocity.y, -downSpeed, 0f));
-            //Debug.Log("The velocity is clamped");
         }
         else
         {   //Only clamp the left/right
             //! This else clause also accepts the case when the player NOT FALLIng, but its holding down
             rigidBody.velocity = Vector2.ClampMagnitude(rigidBody.velocity, maxMoveMagnitude);
         }
-
-        //Debug.Log($"current velocity vertical: {rigidBody.velocity.y} and horizontal: {rigidBody.velocity.x}");
     }
 }
