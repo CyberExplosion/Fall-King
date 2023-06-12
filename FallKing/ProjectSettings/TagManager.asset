@@ -11,6 +11,7 @@ TagManager:
   - LevelBoundary
   - Obstacles
   - Freezing
+  - Wind
   layers:
   - Default
   - TransparentFX

@@ -12,31 +12,40 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Horizontal Physics")]
     [Tooltip("Acceleration to the top speed")]
-    [SerializeField] private float glidingAcceleration = 15f;
+    [SerializeField] private float glidingAcceleration = 10f;
     [Tooltip("The player max left and right velocity")]
-    [SerializeField] private float maxMoveMagnitude = 20f;
+    [SerializeField] private float maxMoveMagnitude = 5f;
     [Tooltip("Time from when release key until the player come to complete stop")]
-    [SerializeField] private float timeToStop = 1f;
+    [SerializeField] private float timeToStop = 1.5f;
 
     [Header("Vertical Physics")]
     [Tooltip("The player falling speed when user holding up key")]
-    [SerializeField] private float hoverFallMagnitude = 15f;
+    [SerializeField] private float hoverFallMagnitude = 3f;
     [Tooltip("The max falling speed the player can have through gravity (doesn't account for holding down key)")]
-    [SerializeField] private float maxFallMagnitude = 20f;
+    [SerializeField] private float maxFallMagnitude = 5f;
     [Tooltip("Speed factor apply to downward speed when holding the down key")]
-    [SerializeField] private float downKeySpeedFactor = 5f;
+    [SerializeField] private float downKeySpeedFactor = 100f;
 
-    [SerializeField] private Transform respawnLevel;
-    
+    [Header("Environment Interactions")]
+    [Tooltip("The player max movement speed when going against wind")]
+    //[SerializeField] private float maxSpeedAgainstWind = 3f;
+    [SerializeField] private float accelerationAgainstWind = 1.5f;
+
+    //! movement
     private Rigidbody2D rigidBody;
     private float initialGravity;
     private float playerInputX, playerInputY;
+    private float downSpeed;
     bool playerReleasedKey = true;
-    float downSpeed;
 
-    private InputActionMap freezingMap;
+    //! Windy
+    private bool fightAgainstWind = false;
+    private float windForce;
+    private float initialMaxMoveMagnitude;
+
+    //private InputActionMap freezingMap;
     private PlayerInput playerInput;
-    private InputActionMap originalActMap;
+    //private InputActionMap originalActMap;
     private InputAction playerAction;
 
     //Unsubscribe event when disable the script
@@ -61,9 +70,10 @@ public class PlayerController : MonoBehaviour
         //Register input
         playerInput = GetComponent<PlayerInput>();
         playerAction = playerInput.actions["Move"];
-        originalActMap = playerInput.currentActionMap;
-
         SubscribeActCallback();
+
+        //Wind
+        initialMaxMoveMagnitude = maxMoveMagnitude;
     }
 
     //THIS CALL FROM DIFFERNT CLASS
@@ -107,15 +117,42 @@ public class PlayerController : MonoBehaviour
         playerAction.canceled -= MoveAction_canceled;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        // Collide with left or right boundary
-        if (collision.gameObject.tag == "Boundary")
+        if (collision.CompareTag("Wind"))
         {
-            playerInputX = 0;
+            float windAngleDir = collision.gameObject.GetComponent<AreaEffector2D>().forceAngle;
+            windForce = collision.gameObject.GetComponent<AreaEffector2D>().forceMagnitude;
+            //maxMoveMagnitude = maxSpeedAgainstWind;
+            //! Very scuff, but did it job
+            if (windAngleDir >= 90 || windAngleDir <= 270)
+            {
+                if (playerInputX > 0)   //wind blowing left and player going right
+                {
+                    fightAgainstWind = true;
+                }
+            }
+            else
+            {
+                // wind blowing right
+                if (playerInputX < 0)
+                {
+                    fightAgainstWind = true;
+                }
+            }
+            Debug.Log($"The current velocity of the player {rigidBody.velocity}");
         }
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Wind"))
+        {
+            fightAgainstWind = false;
+            maxMoveMagnitude = initialMaxMoveMagnitude;
+        }
+    }
 
     void FixedUpdate()
     {
@@ -140,6 +177,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            //Ignore the max fall magnitude
             var movementY = playerInputY;
             rigidBody.gravityScale = initialGravity;
             var moveDown = new Vector2(0, movementY * downKeySpeedFactor);
@@ -148,7 +186,15 @@ public class PlayerController : MonoBehaviour
 
         //! Now add horizontal force
         float movementX = playerInputX;
-        rigidBody.AddForce(new Vector2(movementX, 0) * glidingAcceleration);
+        if (!fightAgainstWind)
+        {
+            rigidBody.AddForce(new Vector2(movementX, 0) * glidingAcceleration);
+        }
+        else
+        {
+            //? This will allow the player to always go against the wind if they want to
+            rigidBody.AddForce(new Vector2(movementX, 0) * windForce * accelerationAgainstWind);
+        }
 
         if (rigidBody.velocity.y < 0 && playerInputY >= 0)
         {
