@@ -25,11 +25,11 @@ Here is an example:
 You should replay any **bold text** with your relevant information. Liberally use the template when necessary and appropriate.
 
 ## Producer
-Student Information
-Name: Rijul Saxena
-Email: rsax@ucdavis.edu
-Github: rsax1
 
+### Student Information
+*Name: Rijul Saxena*   
+*Email: rsax@ucdavis.edu*   
+*Github: rsax1*
 
 Our team realized early in the production process that our varying schedules would make it hard to pair-program and meet regularly until later in the quarter. In lieu of regular meetings, we made sure to clearly define tasks within the development process and created a Discord group chat as a "drop in" space, where team members would start calls when needed for decision making and debugging. This worked well for us because it was rare that an issue or decision required all hands on deck. 
 
