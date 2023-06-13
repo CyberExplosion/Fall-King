@@ -137,10 +137,27 @@ We went through many iterations of asset themes for this project. Initially we t
 ### Student Information
 *Name: Andrew Nguyen*   
 *Email: aqnguy@ucdavis.edu*   
-*Github: andreeww_n* 
+*Github: andreeww-n* 
 
+#### Game Design Pattern
+For our game, we used the component pattern. We have multiple components that can be inherited by objects in the game. Our game consists of multiple different obstacles that has different effects. We created an enemy that has the EnemyJumpAI that allows the enenmy to jump towards the player. There is also a flying chaser that is another enemy that follows the player and interrupts the player movements. The flying chaser object also includes the FlyingChaserController script. More obstacles include the freezing area and windy area which includes the FreezingAreaController and AreaEffector respectively. We have different components that the individual objects inherits. Our game has mutliple stages that may use the same objects. Each is its individual object, and it does not effect the others. 
 
-For our game, we used the component pattern. We have multiple components that can be inherited by objects in the game. Our game consists of multiple different obstacles that has different effects. We created an enemy that has the EnemyJumpAI that allows the enenmy to jump towards the player. There is also a flying chaser that is another enemy that follows the player and interrupts the player movements. The flying chaser object also includes the FlyingChaserController script. More obstacles include the freezing area and windy area which includes the FreezingAreaController and AreaEffector respectively. We have different components that the individual objects inherits. Our game has mutliple stages that may use the same objects. 
+#### Stages and Levels 
+Our game has diferent stages and levels. In our game, we have a total of 5 stages and consists of multiple levels. We had to design each level in order to make it challenging but yet fun for the player. The stages starts off easy, and it slowly introduces different type of obstacles such as enemies, windy zone, flying chaser, and freeze zone. Each level has its own obstacle, and it provides for a more challenging experience. The stages gets progressively harder as theres more platforms and there are less gaps for the player to get to. We had to strategically place each obstacle at different areas in order to challenge the player. Some windy area may blow the player while enemies may interrupt the player movement in order knock the player into the walls.  
+
+The level changes using our LevelSwitcher. The camera shows one level at a time when the player reaches that level. The LevelSwitcher script created by Jehryn allows the camera to switch to different levels. There is a previous level field, and there is a next level field where you can input the next level. With the next level field, it allows the camera to move to the correct level. Using this script, we able to switch stages. 
+
+#### States 
+We have different states of the game: 
+- Main Menu 
+
+- Playing 
+
+- Paused 
+
+- Victory Screen  
+
+Each menu has a manager script made by Jehryn in order to switch the states. There is the `MainMenu` script that controls the main menu. There is also the `PauseManager` that controls the pause manager menu. There is also a `VictoryMenu` that when the player touches the princess at the last stage, the victory menu should pop up. These are the manager scripts that are required for switching the states of the game.  
 
 # Sub-Roles
 
