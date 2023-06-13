@@ -111,7 +111,7 @@ public class FreezingAreaController : MonoBehaviour
         player.GetComponent<Rigidbody2D>().mass = player.GetComponent<Rigidbody2D>().mass * frozenMassFactor;
 
         SubscribeInputCallback();   //Freezing actions
-        playerController.SwitchMap("Freezing");    //// Switching without unsubscribing, memory leak?
+        playerController.SwitchMap("Freezing");
     }
 
     private void UnfrozeAction_canceled(InputAction.CallbackContext ctx)
