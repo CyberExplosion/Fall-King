@@ -1249,8 +1249,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Watch out for windy, heat, freeze, and slow zones.  Learn their effects
-    and how to break free from them!
+  m_text: Watch out for windy, freeze, and fan zones.  Learn their effects and how
+    to break free from them!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2b8eb9e0fee9e486d84980d23188eaec, type: 2}
   m_sharedMaterial: {fileID: 4295230943045120736, guid: 2b8eb9e0fee9e486d84980d23188eaec, type: 2}
