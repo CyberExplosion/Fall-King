@@ -134,7 +134,13 @@ We went through many iterations of asset themes for this project. Initially we t
 
 ## Game Logic
 
-**Document what game states and game data you managed and what design patterns you used to complete your task.**
+### Student Information
+*Name: Andrew Nguyen*   
+*Email: aqnguy@ucdavis.edu*   
+*Github: andreeww_n* 
+
+
+For our game, we used the component pattern. We have multiple components that can be inherited by objects in the game. Our game consists of multiple different obstacles that has different effects. We created an enemy that has the EnemyJumpAI that allows the enenmy to jump towards the player. There is also a flying chaser that is another enemy that follows the player and interrupts the player movements. The flying chaser object also includes the FlyingChaserController script. More obstacles include the freezing area and windy area which includes the FreezingAreaController and AreaEffector respectively. We have different components that the individual objects inherits. Our game has mutliple stages that may use the same objects. 
 
 # Sub-Roles
 
