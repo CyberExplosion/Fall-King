@@ -10,7 +10,8 @@
 
 
 **If you did work that should be factored in to your grade that does not fit easily into the proscribed roles, add it here! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
-
+* [Gameplay Programmer](https://www.screenskills.com/job-profiles/browse/games/programming/gameplay-programmer/) - Work on objects (prefabs) that interacts with the game world and player. Assist level designer with creating fun objects, while also tuning and balancing their effects.
+* [AI Programmer](https://www.screenskills.com/job-profiles/browse/games/programming/artificial-intelligence-ai-programmer/) - Work on enemies to create exciting adversaries for the player. Balance npc and the player with the level designer to deliver fun interactions.
 # Main Roles #
 
 Your goal is to relate the work of your role and sub-role in terms of the content of the course. Please look at the role sections below for specific instructions for each role.
@@ -108,6 +109,10 @@ Lastly, `StartTyping()` is called once the `Player` object collides with the `Le
 
 **Describe the basics of movement and physics in your game. Is it the standard physics model? What did you change or modify? Did you make your movement scripts that do not use the physics system?**
 
+### Player Controller
+* Describe how to make player feel snappy and smooth when moving
+* Describe how player expect to interact with many different prefab around them
+
 ## Animation and Visuals
 
 ### Student Information
@@ -131,6 +136,23 @@ We went through many iterations of asset themes for this project. Initially we t
 **Describe the default input configuration.**
 
 **Add an entry for each platform or input style your project supports.**
+
+### Student Information
+*Name: Khoi Nguyen* \
+*Email: koinguyen@ucdavis.edu*  \
+*Github: CyberExplosion*
+
+### New Input System
+* describe the usage of new input system and how we implement those to work with multiple control scheme
+
+#### Freezing Interactions
+
+#### Wind area Interaction
+
+## AI Programmer
+* Explain Enemy Jump and Enemy Chaser
+## Gameplay Programmer
+* Explain Wind area, freezing area, and many more etc.
 
 ## Game Logic
 

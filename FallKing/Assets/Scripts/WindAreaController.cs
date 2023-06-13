@@ -57,18 +57,17 @@ public class WindAreaController : MonoBehaviour
         }
         forceChangeTimer += Time.deltaTime;
     }
-    //private void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        // Player entered the windy area
-    //        ActualPlayerController player = other.GetComponent<ActualPlayerController>();
-    //        if (player != null)
-    //        {
-    //            player.SetInWindyArea(true);
-    //        }
-    //    }
-    //}
+
+
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            // Player entered the windy area
+            FindObjectOfType<SoundManager>().PlaySoundEffect("WindSound");
+        }
+    }
 
     //private void OnTriggerExit2D(Collider2D other)
     //{

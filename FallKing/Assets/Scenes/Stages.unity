@@ -114096,6 +114096,12 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+  - clip: {fileID: 8300000, guid: 9ea255e509ad16c42b8c6c877ef76285, type: 3}
+    audioSource: {fileID: 0}
+    title: WindSound
+    volume: 1
+    pitch: 1
+    loop: 0
 --- !u!4 &1587698958
 Transform:
   m_ObjectHideFlags: 0

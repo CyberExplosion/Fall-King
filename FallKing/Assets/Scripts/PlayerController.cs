@@ -126,6 +126,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("Wind"))
         {
+
             float windAngleDir = collision.gameObject.GetComponent<AreaEffector2D>().forceAngle;
             windForce = collision.gameObject.GetComponent<AreaEffector2D>().forceMagnitude;
             //maxMoveMagnitude = maxSpeedAgainstWind;
@@ -134,7 +135,6 @@ public class PlayerController : MonoBehaviour
             {
                 if (playerInputX > 0)   //wind blowing left and player going right
                 {
-                    FindObjectOfType<SoundManager>().PlaySoundEffect("WindSound");
                     fightAgainstWind = true;
                 }
             }
@@ -143,7 +143,6 @@ public class PlayerController : MonoBehaviour
                 // wind blowing right
                 if (playerInputX < 0)
                 {
-                    FindObjectOfType<SoundManager>().PlaySoundEffect("WindSound");
                     fightAgainstWind = true;
                 }
             }
