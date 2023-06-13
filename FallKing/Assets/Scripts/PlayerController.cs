@@ -98,9 +98,13 @@ public class PlayerController : MonoBehaviour
     {
         playerInputX = ctx.ReadValue<Vector2>().x;
         playerInputY = ctx.ReadValue<Vector2>().y;
-        if (playerInputY < 0)
+        if (playerInputY < 0 )
         {
             FindObjectOfType<SoundManager>().PlaySoundEffect("Boost");
+        }
+        if (playerInputY > 0 )
+        {
+            //FindObjectOfType<SoundManager>().PlaySoundEffect("Boost");
         }
     }
 
@@ -130,6 +134,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (playerInputX > 0)   //wind blowing left and player going right
                 {
+                    FindObjectOfType<SoundManager>().PlaySoundEffect("WindSound");
                     fightAgainstWind = true;
                 }
             }
@@ -138,6 +143,7 @@ public class PlayerController : MonoBehaviour
                 // wind blowing right
                 if (playerInputX < 0)
                 {
+                    FindObjectOfType<SoundManager>().PlaySoundEffect("WindSound");
                     fightAgainstWind = true;
                 }
             }
