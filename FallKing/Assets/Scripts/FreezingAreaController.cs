@@ -126,6 +126,7 @@ public class FreezingAreaController : MonoBehaviour
 
         if (wiggleCounter > alternatePressCycle)
         {
+            FindObjectOfType<SoundManager>().PlaySoundEffect("Ice");
             Debug.Log("UNFROZE THE PLAYER");
             unfreezePlayerNow = true;
         }

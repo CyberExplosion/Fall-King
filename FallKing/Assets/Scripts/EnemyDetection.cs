@@ -16,9 +16,11 @@ public class EnemyDetection : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        FindObjectOfType<SoundManager>().PlaySoundEffect("Hit");
         Debug.Log("The layer that involves with the contacts");
         if (collision.CompareTag("Player"))
         {
+            FindObjectOfType<SoundManager>().PlaySoundEffect("Hit");
             Debug.Log("contact with player");
             detectedPlayer = true;
         }

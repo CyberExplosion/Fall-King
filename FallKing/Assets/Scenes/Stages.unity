@@ -112844,6 +112844,18 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+  - clip: {fileID: 8300000, guid: 0c6f7d154065d174caaaab702ace9fec, type: 3}
+    audioSource: {fileID: 0}
+    title: Hit
+    volume: 1
+    pitch: 1
+    loop: 0
+  - clip: {fileID: 8300000, guid: e8117e258442d904a9b9f9c88712e087, type: 3}
+    audioSource: {fileID: 0}
+    title: Ice
+    volume: 1
+    pitch: 1
+    loop: 0
 --- !u!4 &1587698958
 Transform:
   m_ObjectHideFlags: 0
