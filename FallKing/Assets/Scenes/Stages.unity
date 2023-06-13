@@ -112838,6 +112838,12 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+  - clip: {fileID: 8300000, guid: 41f74bd05de6fc64badc4be155a2c6c5, type: 3}
+    audioSource: {fileID: 0}
+    title: Victory
+    volume: 1
+    pitch: 1
+    loop: 0
 --- !u!4 &1587698958
 Transform:
   m_ObjectHideFlags: 0
