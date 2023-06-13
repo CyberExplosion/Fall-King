@@ -9,6 +9,6 @@ public class FrozenPlayerBlockController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = physicalPlayer.position;    
+        transform.position = physicalPlayer.position;
     }
 }
