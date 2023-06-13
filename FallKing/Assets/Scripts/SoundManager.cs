@@ -43,8 +43,7 @@ public class SoundManager : MonoBehaviour
             clip.audioSource.outputAudioMixerGroup = this.sfxMixerGroup;
         }
 
-        //play initial track
-        Debug.Log("sOUNG PLAYED");
+        // play initial track
         this.PlayMusicTrack("Terraria");
     }
 
@@ -66,6 +65,16 @@ public class SoundManager : MonoBehaviour
         }
 
         this.trackPlaying = track;
+    }
+
+    public void StopMusicTrack()
+    {
+        if (this.trackPlaying != null)
+        {
+            this.trackPlaying.audioSource.Stop();
+        }
+        
+        this.trackPlaying = null;
     }
 
 
