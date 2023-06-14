@@ -132,28 +132,54 @@ To build a world for our game, we drew inspiration from 2D platformers, like the
 
 We went through many iterations of asset themes for this project. Initially we thought of sticking to a medieval theme to match our main character, the knight, but instead decided as a team that we wanted more variety and color for a more interesting game feel. To achieve this, we decided on varying terrain types and imported assets according to our narrative plan. It was easy to find sprites for our forest biome, and eventually made tile palettes for the caves and cold weather stages with smaller asset packs. One issue that came up during the importing process was sizing and gameplay interaction, so a recurring topic during team meetings was sizing and assigning mass to elements of our game's world should be in relation to the man character.
 
+## Input - AI Programmer - Gameplay Programmer
 ## Input
-
-**Describe the default input configuration.**
-
-**Add an entry for each platform or input style your project supports.**
-
 ### Student Information
 *Name: Khoi Nguyen* \
 *Email: koinguyen@ucdavis.edu*  \
 *Github: CyberExplosion*
 
-### New Input System
-* describe the usage of new input system and how we implement those to work with multiple control scheme
+#### New Input System
+I use Unity New Input System to separate the logic between device input, interactions and actions being executed in the game. Using the new input system, I was able to map multiple actions for player without worrying about their hardware differences. We have extensively test our game with keyboard control as default input device. However, gamepad would also works due the abstractions Unity Input System provides.
+
+#### Default control
+With the normal control, the device input that use for movement, such as WASD/arrow key and left stick from controller, are mapped to a `Vector2` value. Due to this abstraction, I utilized the `Vector2` value to see if the keyboard/controller is used for character direction.
+
+I attached a `Player Input` component to the player. The component greatly abstract away many difficult aspects of the input system and let me focus on designing a good player control input system. Instead of using the default `Behavior: Send Message` in the component, I changed to `Behavior: Invoke Unity Events` since it let me customize each interactions to cater to the game needs.
+
+In [`PlayerController.cs`](https://github.com/CyberExplosion/Fall-King/blob/main/FallKing/Assets/Scripts/PlayerController.cs), I implemented different methods to use with 2 separate phase of the movement action: `performed` and `cancled`. In my [`cancled`](https://github.com/CyberExplosion/Fall-King/blob/56eb03007aa5ecc8157cf8802c7df08d595ae658/FallKing/Assets/Scripts/PlayerController.cs#L87) callback, I use for when the player stop control the player to start the stopping motion. In the [`performed`](https://github.com/CyberExplosion/Fall-King/blob/56eb03007aa5ecc8157cf8802c7df08d595ae658/FallKing/Assets/Scripts/PlayerController.cs#L97) callback, I recorded the player input for force calculation later and also play sound effect where applicable.
 
 #### Freezing Interactions
+[`FreezingAreaController.cs`](https://github.com/CyberExplosion/Fall-King/blob/main/FallKing/Assets/Scripts/FreezingAreaController.cs) is where I implement the input interaction needs for the player to wiggle themselves out of being frozen. After the player being frozen, I [switch the Input Map to a different mapping](https://github.com/CyberExplosion/Fall-King/blob/56eb03007aa5ecc8157cf8802c7df08d595ae658/FallKing/Assets/Scripts/FreezingAreaController.cs#LL107C32-L107C32) I premade before so that the player cannot move left or right anymore, but can only '*wiggle*'. After the player successfully unfroze, I [switched the map back to the default control](https://github.com/CyberExplosion/Fall-King/blob/56eb03007aa5ecc8157cf8802c7df08d595ae658/FallKing/Assets/Scripts/FreezingAreaController.cs#L154) so the player can move normally again.
 
-#### Wind area Interaction
+I created a [`WiggleAction.cs`](https://github.com/CyberExplosion/Fall-King/blob/main/FallKing/Assets/Input/WiggleAction.cs) (inspired from [Unity Custom Interaction](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.6/manual/Interactions.html#writing-custom-interactions)) as an interaction for the `Unfrozen` action the player trying to achieve. The player would have to quickly control the player left and right in quick succession to successfully break free from ice. I set the `duration` between move left and right to count as a wiggle to public so that the movement designer can have a feel on what is an applicable timing for the player.
 
 ## AI Programmer
-* Explain Enemy Jump and Enemy Chaser
+Enemies exist in the game to block/push the player toward obstacles, make the game more fun and challenging.
+
+Thanks for the [AStar Pathfinding project in Unity](https://arongranberg.com/astar/front) to make this possible.
+### Enemy Detection
+I created [EnemyDetection.cs](https://github.com/CyberExplosion/Fall-King/blob/main/FallKing/Assets/Scripts/EnemyDetection.cs) to handle the detection range and notification for different type of enemy we came up in the future. The prefab [DetectionRange.prefab](https://github.com/CyberExplosion/Fall-King/blob/main/FallKing/Assets/Prefabs/DetectionRange.prefab) are made with a circle collider that trigger when an object tagged with `"Player"` collide with the circle collider. The prefab allow the level designer to change detection range for each enemy based and give the developer a convenient circle to indicate how far will the enemy sees the player.
+### Enemy Jumper
+The [EnemyJump.prefab](https://github.com/CyberExplosion/Fall-King/blob/main/FallKing/Assets/Prefabs/EnemyJump.prefab) contains the above DetectionRange.prefab and a [PhysicalJumpEnemy.prefab](https://github.com/CyberExplosion/Fall-King/blob/main/FallKing/Assets/Prefabs/PhysicalJumpEnemy.prefab). The physical jump enemy is the physical body of the enemy, including sprite renderer, rigidbody2d, its own collider and the control script [EnemyJumpAI.cs](https://github.com/CyberExplosion/Fall-King/blob/main/FallKing/Assets/Scripts/EnemyJumpAI.cs). The enemy jumper is the more basic enemy of the two. It uses Linecast to detect the player and hop toward them. The prefab contains various different variable to adjust and change to alter the enemy hop distance, enemy time to player, enemy hop force.
+
+Due to Linecast touch the first layer it make contacts to, I make it to [ignore the Enemy Detection layer and its own collider layer](https://github.com/CyberExplosion/Fall-King/blob/56eb03007aa5ecc8157cf8802c7df08d595ae658/FallKing/Assets/Scripts/EnemyJumpAI.cs#LL89C83-L89C83).
+### Enemy Chaser
+The [FlyingEnemy.prefab](https://github.com/CyberExplosion/Fall-King/blob/main/FallKing/Assets/Prefabs/FlyingEnemy.prefab) also contains a DetectionRange.prefab and a [PhysicalFlyingChaser.prefab](https://github.com/CyberExplosion/Fall-King/blob/main/FallKing/Assets/Prefabs/PhysicalFlyingChaser.prefab). The physical chaser is the physical body, including sprite rendere, rigidbody2d and also its own collider and control script [FlyingChaserController.cs](https://github.com/CyberExplosion/Fall-King/blob/main/FallKing/Assets/Scripts/FlyingChaserController.cs). The flying chaser utilize AStar path finding to actively pursue after the player when they are in their detection range. The physical chase prefab also has a Seeker component that is from the [AStar package](https://github.com/CyberExplosion/Fall-King/blob/main/FallKing/Assets/AstarPathfindingProject/Core/AI/Seeker.cs). The FlyingEnemy also contains various parameters like chasing speed and path update interval to determine how aggressive the level designer wants it to be. 
+
 ## Gameplay Programmer
-* Explain Wind area, freezing area, and many more etc.
+Environment Objects and prefabs that can be reused by the level designer to create an exciting stage
+
+Each of the following prefab exist so we can easily drag and drop texture in later
+* The [Fan prefab](https://github.com/CyberExplosion/Fall-King/blob/main/FallKing/Assets/Prefabs/Fan.prefab) uses a Buoyancy Effector 2D to replicate the effect of having the player floating in air.
+* The [Magnet prefab](https://github.com/CyberExplosion/Fall-King/blob/main/FallKing/Assets/Prefabs/Magnet.prefab) uses Point Effector 2D to apply force to attract rigidbody2D toward itself. We can change the effecting size and the force using the Point Effector 2D component and the Circle Collider component.
+* The [SlowArea prefab](https://github.com/CyberExplosion/Fall-King/blob/main/FallKing/Assets/Prefabs/SlowArea.prefab) uses Area Effector 2D to damp the movement of any rigidbody2D enter. We can change the damping force to make rigidbody2d to move even slower, or even faster.
+
+### Freezing Area
+The [Freezing Area prefab](https://github.com/CyberExplosion/Fall-King/blob/main/FallKing/Assets/Prefabs/FreezingArea.prefab) contains a [Freezing Area Controller](https://github.com/CyberExplosion/Fall-King/blob/main/FallKing/Assets/Scripts/FreezingAreaController.cs) that allow us to change how much the player should be slow down when enter the zone, the time it takes to freeze up the player, the amount of mass to apply after the player freezing up, and also the number of *wiggle* the player need to unfreeze themselves.
+
+### Wind Area
+The [WindyArea](https://github.com/CyberExplosion/Fall-King/blob/main/FallKing/Assets/Prefabs/WindyArea.prefab) contains a [Wind Area Controller](https://github.com/CyberExplosion/Fall-King/blob/main/FallKing/Assets/Scripts/WindAreaController.cs). The wind area cycle between different states, no wind, have wind, change wind direction. We can change the time of each phase in the editor and allow for easier level editing
 
 ## Game Logic
 
@@ -253,5 +279,4 @@ Through these outlets, we were able to create a narrative design around our game
 
 
 ## Game Feel
-
-**Document what you added to and how you tweaked your game to improve its game feel.**
+- The boosted down sound was too loud to be natural, changing it would be better for the player.

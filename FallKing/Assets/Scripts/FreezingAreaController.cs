@@ -48,9 +48,6 @@ public class FreezingAreaController : MonoBehaviour
         unfrozeAction = playerController.GetComponent<PlayerInput>().actions["Unfroze"];
         initialFrozenBlkColor = player.transform.parent.transform.Find("FrozenPlayerBlock").GetComponent<SpriteRenderer>().color;
         freezeCounter = 0;
-        Debug.Log($"The unfroze action {unfrozeAction}");
-
-        Debug.Log($"Initial color {initialFrozenBlkColor}");
     }
 
     private void Update()
@@ -74,10 +71,8 @@ public class FreezingAreaController : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        //checkRapidMovement();
         if (collision.GetComponent<Collider2D>().CompareTag("Player"))
         {
-            //Debug.LogError($"The player velocity {collision.GetComponent<Rigidbody2D>().velocity}");
             collision.GetComponent<Rigidbody2D>().velocity = collision.GetComponent<Rigidbody2D>().velocity * speedFactor;
 
             if (freezeCounter > freezeTime && !playerFroze)
@@ -87,8 +82,6 @@ public class FreezingAreaController : MonoBehaviour
             }
 
             player.transform.parent.transform.Find("FrozenPlayerBlock").GetComponent<SpriteRenderer>().color = Color.Lerp(initialFrozenBlkColor, new Color(initialFrozenBlkColor.r, initialFrozenBlkColor.g, initialFrozenBlkColor.b, 1), freezeCounter / freezeTime);
-            //Debug.Log($"The counter is {freezeCounter / freezeTime}");
-            //Debug.Log($"The value of the sprite color {player.transform.parent.transform.Find("FrozenPlayerBlock").GetComponent<SpriteRenderer>().color}");
 
             freezeCounter += Time.deltaTime;
         }
@@ -106,8 +99,6 @@ public class FreezingAreaController : MonoBehaviour
     //Freeze = keep the same velocity and momentum, but player cannot control anymore
     private void FreezePlayer()
     {
-        //Debug.LogError($"The player is froze, initial mass {player.GetComponent<Rigidbody2D>().mass}");
-        //player.GetComponent<PlayerInput>().actions.Disable();
         player.GetComponent<Rigidbody2D>().mass = player.GetComponent<Rigidbody2D>().mass * frozenMassFactor;
 
         SubscribeInputCallback();   //Freezing actions
@@ -116,7 +107,6 @@ public class FreezingAreaController : MonoBehaviour
 
     private void UnfrozeAction_canceled(InputAction.CallbackContext ctx)
     {
-        Debug.Log("Bring player back to static sprite - The player didn't wiggle quick enough");
         wiggleCounter = 0;
     }
 
@@ -127,14 +117,12 @@ public class FreezingAreaController : MonoBehaviour
         if (wiggleCounter > alternatePressCycle)
         {
             FindObjectOfType<SoundManager>().PlaySoundEffect("Ice");
-            Debug.Log("UNFROZE THE PLAYER");
             unfreezePlayerNow = true;
         }
     }
 
     private void UnfrozeAction_started(InputAction.CallbackContext ctx)
     {
-        Debug.Log("Show character freezing sprite shaking in place");
     }
 
     private void RemoveInputCallback()

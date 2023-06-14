@@ -44,12 +44,10 @@ public class EnemyJumpAI : MonoBehaviour
         Assert.AreNotEqual(timeToLocation, 0f);
     }
 
-    ////TODO: Detect ground to enable jumping again - is not a good way yet, test it out more
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Ground"))
         {
-            //Debug.Log("Enable jumping");
             jumpForce = initialJumpForce;
         }
     }
@@ -62,8 +60,6 @@ public class EnemyJumpAI : MonoBehaviour
         }
     }
 
-    ////TODO: Change the physisc, when the target is too close, the force will make the user jump over the target over and over/
-    ////TODO: A better method would be letting the user indicate the time they want to reach target, and from there calculate the force need
     void FixedUpdate()
     {
         if (detectorScript == null)

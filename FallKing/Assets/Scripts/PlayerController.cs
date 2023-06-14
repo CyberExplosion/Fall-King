@@ -28,7 +28,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Environment Interactions")]
     [Tooltip("The player max movement speed when going against wind")]
-    //[SerializeField] private float maxSpeedAgainstWind = 3f;
     [SerializeField] private float accelerationAgainstWind = 1.5f;
 
     //! movement
@@ -41,11 +40,8 @@ public class PlayerController : MonoBehaviour
     //! Windy
     private bool fightAgainstWind = false;
     private float windForce;
-    private float initialMaxMoveMagnitude;
 
-    //private InputActionMap freezingMap;
     private PlayerInput playerInput;
-    //private InputActionMap originalActMap;
     private InputAction playerAction;
 
     //Unsubscribe event when disable the script
@@ -71,9 +67,6 @@ public class PlayerController : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerAction = playerInput.actions["Move"];
         SubscribeActCallback();
-
-        //Wind
-        initialMaxMoveMagnitude = maxMoveMagnitude;
     }
 
     //THIS CALL FROM DIFFERNT CLASS
@@ -81,7 +74,6 @@ public class PlayerController : MonoBehaviour
     {
         UnSubCurrentActionCallback();
         playerInput.SwitchCurrentActionMap(mapName);
-        Debug.Log($"Switched to input map {playerInput.currentActionMap.name}");
     }
 
     private void MoveAction_canceled(InputAction.CallbackContext ctx)
@@ -111,7 +103,6 @@ public class PlayerController : MonoBehaviour
     public void ResetActionMap()
     {
         playerInput.SwitchCurrentActionMap("Player");
-        Debug.Log($"The current action map now is {playerInput.currentActionMap.name}");
         SubscribeActCallback();
     }
 
@@ -146,7 +137,6 @@ public class PlayerController : MonoBehaviour
                     fightAgainstWind = true;
                 }
             }
-            //Debug.Log($"The current velocity of the player {rigidBody.velocity}");
         }
     }
 
@@ -155,7 +145,6 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("Wind"))
         {
             fightAgainstWind = false;
-            //maxMoveMagnitude = initialMaxMoveMagnitude;
         }
     }
 

@@ -36,7 +36,6 @@ public class FlyingChaserController : MonoBehaviour
         bool detection = detectorScript.detectedPlayer;
         if (path == null)
         {
-            //Debug.Log("The path is null");
             return;
         }
 
@@ -47,14 +46,12 @@ public class FlyingChaserController : MonoBehaviour
 
         if (detection)
         {
-            Debug.Log("Detect the player from flying");
             // Direction calculation
             Vector2 toNextWaypointDir = ((Vector2)(path.vectorPath[currentWaypoint]) - rb.position).normalized;
             Vector2 moveForce = toNextWaypointDir * speed;
 
             // Movement
             rb.AddForce(moveForce);
-            //Debug.Log($"The move force {moveForce}");
 
             // Check if on the way to next way point
             float distToNextWaypoint = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
@@ -81,8 +78,4 @@ public class FlyingChaserController : MonoBehaviour
             seeker.StartPath(rb.position, target.position, OnPathComplete);
         }
     }
-
-
-
-
 }
