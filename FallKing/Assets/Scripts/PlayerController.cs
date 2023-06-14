@@ -98,9 +98,13 @@ public class PlayerController : MonoBehaviour
     {
         playerInputX = ctx.ReadValue<Vector2>().x;
         playerInputY = ctx.ReadValue<Vector2>().y;
-        if (playerInputY < 0)
+        if (playerInputY < 0 )
         {
             FindObjectOfType<SoundManager>().PlaySoundEffect("Boost");
+        }
+        if (playerInputY > 0 )
+        {
+            //FindObjectOfType<SoundManager>().PlaySoundEffect("Boost");
         }
     }
 
@@ -122,6 +126,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("Wind"))
         {
+
             float windAngleDir = collision.gameObject.GetComponent<AreaEffector2D>().forceAngle;
             windForce = collision.gameObject.GetComponent<AreaEffector2D>().forceMagnitude;
             //maxMoveMagnitude = maxSpeedAgainstWind;

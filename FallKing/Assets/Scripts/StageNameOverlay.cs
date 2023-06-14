@@ -30,19 +30,24 @@ public class StageNameOverlay : MonoBehaviour
 
     IEnumerator TypeStageName()
     {
+        FindObjectOfType<SoundManager>().PlaySoundEffect("Typing");
         foreach (char letter in this.textValue)
         {
             this.textMeshPro.text += letter;
             yield return new WaitForSeconds(this.typingSpeed);
         }
+        FindObjectOfType<SoundManager>().StopSoundEffect("Typing");
 
         yield return new WaitForSeconds(this.animationLength);
 
+        FindObjectOfType<SoundManager>().PlaySoundEffect("Typing");
         for (int i = textMeshPro.text.Length - 1; i >= 0; i--)
         {
             this.textMeshPro.text = textMeshPro.text.Remove(i);
             yield return new WaitForSeconds(this.typingSpeed);
         }
+        FindObjectOfType<SoundManager>().StopSoundEffect("Typing");
+
     }
 
     void OnTriggerEnter2D(Collider2D other)

@@ -11,6 +11,8 @@ public class VictoryManager : MonoBehaviour
         // Player collides with Princess, i.e. victory
         if (other.gameObject.tag == "Player")
         {
+            Time.timeScale = 0;
+            FindObjectOfType<SoundManager>().StopMusicTrack();
             FindObjectOfType<SoundManager>().PlaySoundEffect("Victory");
             menu.SetActive(true);
         }
