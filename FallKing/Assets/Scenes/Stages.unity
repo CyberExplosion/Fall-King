@@ -114075,7 +114075,7 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: aecbcb6d71692c94c807c1f0f0796cfc, type: 3}
     audioSource: {fileID: 0}
     title: Boost
-    volume: 1
+    volume: 0.82
     pitch: 1
     loop: 0
   - clip: {fileID: 8300000, guid: 41f74bd05de6fc64badc4be155a2c6c5, type: 3}
@@ -114105,6 +114105,12 @@ MonoBehaviour:
   - clip: {fileID: 8300000, guid: 241da3405bdd2426daa2fc710856bd1f, type: 3}
     audioSource: {fileID: 0}
     title: Typing
+    volume: 0.417
+    pitch: 1
+    loop: 1
+  - clip: {fileID: 8300000, guid: 383dbd8c661cc0648ac6a8296082be34, type: 3}
+    audioSource: {fileID: 0}
+    title: Glide
     volume: 1
     pitch: 1
     loop: 1
