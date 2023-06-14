@@ -1,4 +1,4 @@
-# Game Basic Information #
+ga# Game Basic Information #
 
 ## Summary ##
 
@@ -12,7 +12,8 @@ Help! The princess has fallen and has gotten stuck in a cave! It is your job, th
 
 **If you did work that should be factored in to your grade that does not fit easily into the proscribed roles, add it here! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
 * [Gameplay Programmer](https://www.screenskills.com/job-profiles/browse/games/programming/gameplay-programmer/) - Work on objects (prefabs) that interacts with the game world and player. Assist level designer with creating fun objects, while also tuning and balancing their effects.
-* [AI Programmer](https://www.screenskills.com/job-profiles/browse/games/programming/artificial-intelligence-ai-programmer/) - Work on enemies to create exciting adversaries for the player. Balance npc and the player with the level designer to deliver fun interactions.
+* [AI Programmer](https://www.screenskills.com/job-profiles/browse/games/programming/artificial-intelligence-ai-programmer/) - Work on enemies to create exciting adversaries for the player. Balance npc and the player with the level designer to deliver fun interactions. 
+* [Level Design](https://www.screenskills.com/job-profiles/browse/games/design/level-designer/) - Work on designing the levels of the game which takes into account platforms, enemies, objects etc. 
 # Main Roles #
 
 Your goal is to relate the work of your role and sub-role in terms of the content of the course. Please look at the role sections below for specific instructions for each role.
@@ -182,7 +183,7 @@ The [Freezing Area prefab](https://github.com/CyberExplosion/Fall-King/blob/main
 ### Wind Area
 The [WindyArea](https://github.com/CyberExplosion/Fall-King/blob/main/FallKing/Assets/Prefabs/WindyArea.prefab) contains a [Wind Area Controller](https://github.com/CyberExplosion/Fall-King/blob/main/FallKing/Assets/Scripts/WindAreaController.cs). The wind area cycle between different states, no wind, have wind, change wind direction. We can change the time of each phase in the editor and allow for easier level editing
 
-## Game Logic
+## Game Logic - Level Design
 
 ### Student Information
 *Name: Andrew Nguyen*   
@@ -197,7 +198,7 @@ Each stage is a game level that the player has to win in order to reach the next
 ![](2023-06-13-20-02-45.png) 
 
 
-#### Stages and Levels 
+#### Stages and Level Design
 Our game has diferent stages and levels. In our game, we have a total of 5 stages and consists of multiple levels. We had to design each level in order to make it challenging but yet fun for the player. The stages starts off easy, and it slowly introduces different type of obstacles such as enemies, windy zone, flying chaser, and freeze zone. Each level has its own obstacle, and it provides for a more challenging experience. The stages gets progressively harder as theres more platforms and there are less gaps for the player to get to. We had to strategically place each obstacle at different areas in order to challenge the player. Some windy area may blow the player while enemies may interrupt the player movement in order knock the player into the walls. Using the Tile palette in Unity, we were able to create the stages and levels. Using the tiles downloaded by RJ, we were able to create the map. The hardest part when designing the stages is to make it challenging and fun. With the tiles palette and prefabs, we were able to create stages for the player to play.
 
 The level changes using our [LevelSwitcher](https://github.com/CyberExplosion/Fall-King/blob/3241942e7dbae66866e8f0124c0b9dcb9f3533ae/FallKing/Assets/Scripts/LevelSwitcher.cs#L4). The camera shows one level at a time when the player reaches that level. The LevelSwitcher script created by Jehryn allows the camera to switch to different levels. There is a previous level field, and there is a next level field where you can input the next level. With the next level field, it allows the camera to move to the correct level. There is also a collider componennt with this script. It is basically a boundary, so when the player collides with the boundary, it signifies that the player has passed the level. The boundary is set at the bottom of each level, and it moves the camera to the next level when the player hits the boundary. Using this script, we able to switch stages. 
