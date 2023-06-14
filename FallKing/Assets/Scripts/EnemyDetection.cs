@@ -16,15 +16,13 @@ public class EnemyDetection : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        FindObjectOfType<SoundManager>().PlaySoundEffect("Hit");
+        //FindObjectOfType<SoundManager>().PlaySoundEffect("Hit");
         Debug.Log("The layer that involves with the contacts");
         if (collision.CompareTag("Player"))
         {
-            FindObjectOfType<SoundManager>().PlaySoundEffect("Hit");
-            Debug.Log("contact with player");
+            //FindObjectOfType<SoundManager>().PlaySoundEffect("Hit");
             detectedPlayer = true;
         }
-        //Debug.Log("TRIGGER");
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -32,7 +30,6 @@ public class EnemyDetection : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             detectedPlayer = false;
-            Debug.Log("EXITTTT");
         }
     }
 }

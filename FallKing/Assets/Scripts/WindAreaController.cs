@@ -28,7 +28,6 @@ public class WindAreaController : MonoBehaviour
     {
         if (windForceActive && windForceTimer < windForceDuration)
         {
-            //Debug.Log("Currently have force");
             areaEffector.forceMagnitude = initialForceMagnitude;
             windForceTimer += Time.deltaTime;
         }
@@ -40,7 +39,6 @@ public class WindAreaController : MonoBehaviour
 
         if (!windForceActive && noForceTimer < noForceDuration)
         {
-            //Debug.Log("Currently no force");
             areaEffector.forceMagnitude = 0f;
             noForceTimer += Time.deltaTime;
         }
@@ -68,17 +66,4 @@ public class WindAreaController : MonoBehaviour
             FindObjectOfType<SoundManager>().PlaySoundEffect("WindSound");
         }
     }
-
-    //private void OnTriggerExit2D(Collider2D other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        // Player exited the windy area
-    //        ActualPlayerController player = other.GetComponent<ActualPlayerController>();
-    //        if (player != null)
-    //        {
-    //            player.SetInWindyArea(false);
-    //        }
-    //    }
-    //}
 }
