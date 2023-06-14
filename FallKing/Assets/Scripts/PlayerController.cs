@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
         }
         if (playerInputY > 0 )
         {
-            //FindObjectOfType<SoundManager>().PlaySoundEffect("Boost");
+            FindObjectOfType<SoundManager>().PlaySoundEffect("Glide");
         }
     }
 
