@@ -284,4 +284,5 @@ Through these outlets, we were able to create a narrative design around our game
 *Email: koinguyen@ucdavis.edu*  \
 *Github: CyberExplosion*
 - The boosted down sound was too loud to be natural, changing it would be better for the player.
-- 
+- The flying enemy chase the player too aggressively (high speed), while the detection range of some enemy are not big enough to effectively produce exciting gameplay.
+- The limited vision part at the end seems very hard, maybe make the vision circle larger.
