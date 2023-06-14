@@ -133,11 +133,12 @@ To build a world for our game, we drew inspiration from 2D platformers, like the
 We went through many iterations of asset themes for this project. Initially we thought of sticking to a medieval theme to match our main character, the knight, but instead decided as a team that we wanted more variety and color for a more interesting game feel. To achieve this, we decided on varying terrain types and imported assets according to our narrative plan. It was easy to find sprites for our forest biome, and eventually made tile palettes for the caves and cold weather stages with smaller asset packs. One issue that came up during the importing process was sizing and gameplay interaction, so a recurring topic during team meetings was sizing and assigning mass to elements of our game's world should be in relation to the man character.
 
 ## Input - AI Programmer - Gameplay Programmer
-## Input
 ### Student Information
 *Name: Khoi Nguyen* \
 *Email: koinguyen@ucdavis.edu*  \
 *Github: CyberExplosion*
+
+## Input
 
 #### New Input System
 I use Unity New Input System to separate the logic between device input, interactions and actions being executed in the game. Using the new input system, I was able to map multiple actions for player without worrying about their hardware differences. We have extensively test our game with keyboard control as default input device. However, gamepad would also works due the abstractions Unity Input System provides.
@@ -279,4 +280,8 @@ Through these outlets, we were able to create a narrative design around our game
 
 
 ## Game Feel
+*Name: Khoi Nguyen* \
+*Email: koinguyen@ucdavis.edu*  \
+*Github: CyberExplosion*
 - The boosted down sound was too loud to be natural, changing it would be better for the player.
+- 
