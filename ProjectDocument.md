@@ -2,7 +2,8 @@
 
 ## Summary ##
 
-**A paragraph-length pitch for your game.**
+**A paragraph-length pitch for your game.** 
+Help! The princess has fallen and has gotten stuck in a cave! It is your job, the Brave Knight, to go and save her. As you are falling through the skies, maneuver through platforms and enemies as they try to knock you off your path. Be careful! The land can change from freezing cold to scorching hot. Go save the princess and don't give up on this upcoming journey.  
 
 ## Gameplay Explanation ##
 
