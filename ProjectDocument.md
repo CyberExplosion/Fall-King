@@ -139,13 +139,18 @@ We went through many iterations of asset themes for this project. Initially we t
 *Email: aqnguy@ucdavis.edu*   
 *Github: andreeww-n* 
 
-#### Game Design Pattern
-For our game, we used the component pattern. We have multiple components that can be inherited by objects in the game. Our game consists of multiple different obstacles that has different effects. We created an enemy that has the EnemyJumpAI that allows the enenmy to jump towards the player. There is also a flying chaser that is another enemy that follows the player and interrupts the player movements. The flying chaser object also includes the FlyingChaserController script. More obstacles include the freezing area and windy area which includes the FreezingAreaController and AreaEffector respectively. We have different components that the individual objects inherits. Our game has mutliple stages that may use the same objects. Each is its individual object, and it does not effect the others. 
+#### Game Design Pattern 
+For our game, we did not use a specific game pattern. For our game, there were many prefabs that were the main focus of our game. The objects and prefabs has a component that controls its logic for the game. We created an enemy that has the `EnemyJumpAI` that allows the enenmy to jump towards the player. There is also a flying chaser that is another enemy that follows the player and interrupts the player movements. The flying chaser object also includes the `FlyingChaserController` script. More obstacles include the freezing area and windy area which includes the `FreezingAreaController` and `AreaEffector` respectively. With the help of Khoi, we were able to create the script components for these objects. The prefabs were used throughout the game as there were multiple enemies, flying chaser etc. This is the main core of the game, and the image below roughly explains how the logic of our game works. 
+
+Each stage is a game level that the player has to win in order to reach the next level. If the player goes through all the obstacles, the player moves onto the next level until the player wins the last stage. There are checkpoints throughout the stages for when the player dies, the player can respawn without having to start at the first stage. We have the [Respawn](https://github.com/CyberExplosion/Fall-King/blob/3241942e7dbae66866e8f0124c0b9dcb9f3533ae/FallKing/Assets/Scripts/Respawn.cs#L9) created by Jehryn and Austin that controls the respawn of the player. 
+
+![](2023-06-13-20-02-45.png) 
+
 
 #### Stages and Levels 
-Our game has diferent stages and levels. In our game, we have a total of 5 stages and consists of multiple levels. We had to design each level in order to make it challenging but yet fun for the player. The stages starts off easy, and it slowly introduces different type of obstacles such as enemies, windy zone, flying chaser, and freeze zone. Each level has its own obstacle, and it provides for a more challenging experience. The stages gets progressively harder as theres more platforms and there are less gaps for the player to get to. We had to strategically place each obstacle at different areas in order to challenge the player. Some windy area may blow the player while enemies may interrupt the player movement in order knock the player into the walls.  
+Our game has diferent stages and levels. In our game, we have a total of 5 stages and consists of multiple levels. We had to design each level in order to make it challenging but yet fun for the player. The stages starts off easy, and it slowly introduces different type of obstacles such as enemies, windy zone, flying chaser, and freeze zone. Each level has its own obstacle, and it provides for a more challenging experience. The stages gets progressively harder as theres more platforms and there are less gaps for the player to get to. We had to strategically place each obstacle at different areas in order to challenge the player. Some windy area may blow the player while enemies may interrupt the player movement in order knock the player into the walls. Using the Tile palette in Unity, we were able to create the stages and levels. Using the tiles downloaded by RJ, we were able to create the map. The hardest part when designing the stages is to make it challenging and fun. With the tiles palette and prefabs, we were able to create stages for the player to play.
 
-The level changes using our LevelSwitcher. The camera shows one level at a time when the player reaches that level. The LevelSwitcher script created by Jehryn allows the camera to switch to different levels. There is a previous level field, and there is a next level field where you can input the next level. With the next level field, it allows the camera to move to the correct level. Using this script, we able to switch stages. 
+The level changes using our [LevelSwitcher](https://github.com/CyberExplosion/Fall-King/blob/3241942e7dbae66866e8f0124c0b9dcb9f3533ae/FallKing/Assets/Scripts/LevelSwitcher.cs#L4). The camera shows one level at a time when the player reaches that level. The LevelSwitcher script created by Jehryn allows the camera to switch to different levels. There is a previous level field, and there is a next level field where you can input the next level. With the next level field, it allows the camera to move to the correct level. There is also a collider componennt with this script. It is basically a boundary, so when the player collides with the boundary, it signifies that the player has passed the level. The boundary is set at the bottom of each level, and it moves the camera to the next level when the player hits the boundary. Using this script, we able to switch stages. 
 
 #### States 
 We have different states of the game: 
@@ -165,13 +170,25 @@ Each menu has a manager script made by Jehryn in order to switch the states. The
 
 **Describe the platforms you targeted for your game release. For each, describe the process and unique actions taken for each platform. What obstacles did you overcome? What was easier than expected?**
 
-## Audio
+## Audio 
+
+*Name: Andrew Nguyen*   
+*Email: aqnguy@ucdavis.edu*   
+*Github: andreeww-n* 
 
 **List your assets including their sources and licenses.**
+ 
+#### Audio System Implementation 
+*Written by: Andrew Nguyen*   
 
-**Describe the implementation of your audio system.**
+For our audio, I introduced the [SoundManager](https://github.com/CyberExplosion/Fall-King/blob/3241942e7dbae66866e8f0124c0b9dcb9f3533ae/FallKing/Assets/Scripts/SoundManager.cs#L5) for our audio which is the same manager used in the Exercise 4: Factory Pattern. I used this manager as it is easy to add audio clips and music throughout the game. I could also use the manager to control the volume of each music and sound effects. The Sound Manager uses the [SoundClip](https://github.com/CyberExplosion/Fall-King/blob/3241942e7dbae66866e8f0124c0b9dcb9f3533ae/FallKing/Assets/Scripts/SoundClip.cs#L4) which allows each music or sound effects to be adjusted.  
 
-**Document the sound style.** 
+Using the scripts, I was able to create a `SoundManager` object which utilizes the script. From here, the music and sound effects can be added. This also allows the adjustment of the volume and pitch of each music track and sound effects. 
+**Document the sound style.**  
+
+#### Audio Resources
+`Exercise 4: The Factory Pattern` 
+
 
 ## Gameplay Testing
 
