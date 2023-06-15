@@ -2,12 +2,9 @@
 
 ## Summary ##
 
-**A paragraph-length pitch for your game.** 
 Help! The princess has fallen and has gotten stuck in a cave! It is your job, the Brave Knight, to go and save her. As you are falling through the skies, maneuver through platforms and enemies as they try to knock you off your path. Be careful! The land can change from freezing cold to scorching hot. Go save the princess and don't give up on this upcoming journey.  
 
 ## Gameplay Explanation ##
-
-**In this section, explain how the game should be played. Treat this as a manual within a game. It is encouraged to explain the button mappings and the most optimal gameplay strategy.**
 
 W Key - to hover, slows down the falling motion
 
@@ -19,22 +16,10 @@ Also works with arrow keys.
 
 As the knight, you should fall down avoiding the platforms and the obstacles. Colliding with the platforms will result in death and restart of the stage. There are jumping enemies which jumps at you. There are flying enemies that flies chasing you around. There are also windy areas which blows your movement around and magnet which pulls you towards the center. When entering a freeze zone, the character's movement will be frozen. In order to unfreeze, you would have to press the A and D key in rapid succession to break free. Passing all the stages leads you to the princess which results in winning the game. 
 
-**If you did work that should be factored in to your grade that does not fit easily into the proscribed roles, add it here! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
 * [Gameplay Programmer](https://www.screenskills.com/job-profiles/browse/games/programming/gameplay-programmer/) - Work on objects (prefabs) that interacts with the game world and player. Assist level designer with creating fun objects, while also tuning and balancing their effects.
 * [AI Programmer](https://www.screenskills.com/job-profiles/browse/games/programming/artificial-intelligence-ai-programmer/) - Work on enemies to create exciting adversaries for the player. Balance npc and the player with the level designer to deliver fun interactions. 
 * [Level Design](https://www.screenskills.com/job-profiles/browse/games/design/level-designer/) - Work on designing the levels of the game which takes into account platforms, enemies, objects etc. 
 # Main Roles #
-
-Your goal is to relate the work of your role and sub-role in terms of the content of the course. Please look at the role sections below for specific instructions for each role.
-
-Below is a template for you to highlight items of your work. These provide the evidence needed for your work to be evaluated. Try to have at least 4 such descriptions. They will be assessed on the quality of the underlying system and how they are linked to course content. 
-
-*Short Description* - Long description of your work item that includes how it is relevant to topics discussed in class. [link to evidence in your repository](https://github.com/dr-jam/ECS189L/edit/project-description/ProjectDocumentTemplate.md)
-
-Here is an example:  
-*Procedural Terrain* - The background of the game consists of procedurally-generated terrain that is produced with Perlin noise. This terrain can be modified by the game at run-time via a call to its script methods. The intent is to allow the player to modify the terrain. This system is based on the component design pattern and the procedural content generation portions of the course. [The PCG terrain generation script](https://github.com/dr-jam/CameraControlExercise/blob/513b927e87fc686fe627bf7d4ff6ff841cf34e9f/Obscura/Assets/Scripts/TerrainGenerator.cs#L6).
-
-You should replay any **bold text** with your relevant information. Liberally use the template when necessary and appropriate.
 
 ## Producer
 
@@ -118,11 +103,37 @@ Lastly, `StartTyping()` is called once the `Player` object collides with the `Le
 
 ## Movement/Physics
 
+### Student Information
+*Name: Austin Maung*   
+*Email: amaung@ucdavis.edu*   
+*Github: MaungDavis*
+
 **Describe the basics of movement and physics in your game. Is it the standard physics model? What did you change or modify? Did you make your movement scripts that do not use the physics system?**
+
+Our game has four main movement mechanics: left and right which accelerates the player into either direction up to a max velocity, up which allows the player to slow their downwards velocity, and down which increases the speed the player can reach when accelerating down. In adition to these controls, the player is affected by gravity, pushing the player down, a Magnet which pulls a player towards itself, and a WindyArea which pushes a player in any given direction. They're are also enemies such as a Flyer, which accelerates to the player, and a Jumper which jumps to the player by sending a force to it once then allowing gravity to let it drop.
+
+Our physics model is separate from the standard physics model, we opted to use Serialized parameters as opposed to a combination of a RigidBody's mass, linear drag, and gravity scale to control the Player's downward velocity/speed. This was mainly done in order to more easily work with other game mechanics such as magnetism and WindyArea.
 
 ### Player Controller
 * Describe how to make player feel snappy and smooth when moving
-* Describe how player expect to interact with many different prefab around them
+* Describe how player expect to interact with many different prefab around the
+
+Originally I had a player controller script which simply moved a player in either the left or right direction with constant velocity however we've decided to move out of that direction. Currently all implementations of movement/physics are done by Khoi Nguyen.
+
+However, we've decided to force the player to accelerate the player when strafing left and right, while keeping some of that speed in that direction when let go of the keys. This increases the sense of difficulty as different obstacles require different amounts of acceleration even though there are only two inputs for this control. This was important since we were striving for an easy to learn, hard to master kind of game.
+
+However, instead of actually working on movement as seen in my main role, I've actually moved on to help with Level Design and created Stages 1, 2, and 3.
+
+## Stage One
+
+A tutorial stage that teaches the player how to strafe left and right. We start on stage/level 1-1 at the surface and go down through a hole. 1-2 introduces strafing in 1 direction, continuing the tunnel. Due to terminal velocity and the acceleraction/force while strafing, the player should immediately tell how difficult the game should be by how close they are to touching the ground when approaching 1-3. 1-3 Forces the player to use both strafing directions in hopes of getting the player used to this strafe acceleration/force.
+
+## Stage Two
+
+Stage two continues in the underground and plays around with diverging paths. Using the WindyArea prefabs, we direct but still give the player control over 3 different paths in 2-1. Two of these paths lead to an easy obstacle in 2-2, while the easiest path in 2-1 leads to the most difficult path in 2-2. 2-3 opens up the underground area presenting two paths, while introducing the 2 main enemies of the game(Flyer, Jumper).
+
+## Stage Three
+Stage three takes place in a desert, focusing on using enemies to move enemies to the walls. 3-1 showcases a pyramid, splitting the map into two paths. The Flyers here fly extremely quickly in order to disorient the player. 2-2 leads down below the pyramid, using a combination of slow fields, a Flyer, and Jumpers in order to slam the player again onto the walls. Lastly 2-3 takes the player through the mouth of a Sphinx, introducing the player to Stage Four, the Ice Stage.
 
 ## Animation and Visuals
 
@@ -228,7 +239,6 @@ Each menu has a manager script made by Jehryn in order to switch the states. The
 
 ## Cross-Platform
 
-**Describe the platforms you targeted for your game release. For each, describe the process and unique actions taken for each platform. What obstacles did you overcome? What was easier than expected?**
 
 ## Audio 
 
@@ -236,15 +246,12 @@ Each menu has a manager script made by Jehryn in order to switch the states. The
 *Email: aqnguy@ucdavis.edu*   
 *Github: andreeww-n* 
 
-**List your assets including their sources and licenses.**
- 
 #### Audio System Implementation 
 *Written by: Andrew Nguyen*   
 
 For our audio, I introduced the [SoundManager](https://github.com/CyberExplosion/Fall-King/blob/3241942e7dbae66866e8f0124c0b9dcb9f3533ae/FallKing/Assets/Scripts/SoundManager.cs#L5) for our audio which is the same manager used in the Exercise 4: Factory Pattern. I used this manager as it is easy to add audio clips and music throughout the game. I could also use the manager to control the volume of each music and sound effects. The Sound Manager uses the [SoundClip](https://github.com/CyberExplosion/Fall-King/blob/3241942e7dbae66866e8f0124c0b9dcb9f3533ae/FallKing/Assets/Scripts/SoundClip.cs#L4) which allows each music or sound effects to be adjusted.  
 
 Using the scripts, I was able to create a `SoundManager` object which utilizes the script. From here, the music and sound effects can be added. This also allows the adjustment of the volume and pitch of each music track and sound effects. 
-**Document the sound style.**  
 
 #### Audio Resources
 `Exercise 4: The Factory Pattern` 
@@ -252,9 +259,12 @@ Using the scripts, I was able to create a `SoundManager` object which utilizes t
 
 ## Gameplay Testing
 
-**Add a link to the full results of your gameplay tests.**
+### Student Information
+*Name: Austin Maung*   
+*Email: amaung@ucdavis.edu*   
+*Github: MaungDavis*
 
-**Summarize the key findings from your gameplay tests.**
+The game takes around 20 to 40 minutes from start to finish, assuming the player has never seen the game being played or actually tried some play-testing. This all falls in line with what we were expecting. In stage 2, we use incredibly strong WindyArea's to keep the player in the air which was offputting. In stage 5, the player is forced to play with limited visibility. Instead of completely darkening the screen, the player can slightly see their surroundings, but a small circle encopassing the player shows their surroundings completely. It was found that turning off the lights significantly eased the difficulty which wasn't exactly what we intended but was fine as the last stage was incredibly difficult. During the game showcase, it appeared that most players reached the final stage, but almost none, maybe 20 percent reached the ending. This was to be as expected since most didn't play the game for 20 to 30 minutes as intended.
 
 ## Narrative Design
 
