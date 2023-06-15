@@ -287,3 +287,22 @@ Through these outlets, we were able to create a narrative design around our game
 - The boosted down sound was too loud to be natural, changing it would be better for the player.
 - The flying enemy chase the player too aggressively (high speed), while the detection range of some enemy are not big enough to effectively produce exciting gameplay.
 - The limited vision part at the end seems very hard, maybe make the vision circle larger.
+
+## Animation and Visuals
+
+### Student Information
+*Name: RCasimiro Rodriguez*   
+*Email: cjrod@ucdavis.edu*   
+*Github: casrodr*
+
+Helped combine visuals, sound, and animation to create the imersive experience and recommended type of landscape to use. The animation and visuals depened on what we wanted the game to feel like. As a 2d game that you play going down we wanted it to feel fast paced while also allowing a harder difficulty and rewarding feeling. Animation was based of what we wanted the end goal to be.
+
+# Sub-Roles
+
+## Audio 
+
+*Name: Casimiro Rodriguez*   
+*Email: cjrod@ucdavis.edu*   
+*Github: casrodr* 
+
+Our audio system implementation for the fast-paced, retro-style 2D game centered around an up-and-down scrolling mechanic was carefully designed to enhance the nostalgic feel. We created a sound style that reflected the game's retro theme. Each audio was made to go along with a factor in the game to further feel like the user was more in control. The audio style we chose was to focus on a faster paced game while also allowing you to slow down or speed up with gliding and boosting sounds. Files were added under audio.
