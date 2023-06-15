@@ -274,9 +274,10 @@ Through these outlets, we were able to create a narrative design around our game
 
 ## Press Kit and Trailer
 
-**Include links to your presskit materials and trailer.**
+[Link to Trailer and Screenshots](https://drive.google.com/file/d/1JGt4jN0QAVvGzIXndufPgRlXSx0bMR8f/view?usp=drive_link)
 
-**Describe how you showcased your work. How did you choose what to show in the trailer? Why did you choose your screenshots?**
+The trailer is meant to show the most enticing parts of our game, from the enemy interactions to the seemingly-neverending tunnels and terrain. I decided to take a cinematic approach to introduce the game's world and the main character's story, and incorporate a hard switch to footage of the game with hyped-up music to get the audience thinking about playing the game. 
+As we went through the development process, we constantly had to address conflicts in commits on our repository, and it sort of became a meme for our group. To give the audience insight on this, we decided to nickname ourselves " Merge Conflict Studios " which is also presented in the trailer. The screenshots included are (what I think would be) the most interesting parts of the game to someone who doesn't know what it is.
 
 
 
