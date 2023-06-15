@@ -306,3 +306,15 @@ Helped combine visuals, sound, and animation to create the imersive experience a
 *Github: casrodr* 
 
 Our audio system implementation for the fast-paced, retro-style 2D game centered around an up-and-down scrolling mechanic was carefully designed to enhance the nostalgic feel. We created a sound style that reflected the game's retro theme. Each audio was made to go along with a factor in the game to further feel like the user was more in control. The audio style we chose was to focus on a faster paced game while also allowing you to slow down or speed up with gliding and boosting sounds. Files were added under audio.
+
+#### Audio Resources
+-"FallDeath.mp3" (https://www.youtube.com/watch?v=3w-2gUSus34)
+-"Fortnite Menu Theme (Full) - Fortnite Soundtrack [Original + Battle Royale] (320 kbps).mp3" (https://www.youtube.com/watch?v=bBfgS9XvWME)
+-"Glide.mp3" (https://www.youtube.com/watch?v=RNmRiX1HmnA)
+-"Hitmarker.mp3" (https://www.youtube.com/watch?v=v0J90Vbllxg)
+-"Stage Win (Super Mario) - Sound Effect HD (320 kbps).mp3" (https://www.youtube.com/watch?v=jmOgokvUwdw)
+-"terraria.mp3" (https://www.youtube.com/watch?v=vB7lYs4z7kE)
+-"Wind.mp3" (https://www.youtube.com/watch?v=_X-MrWgOmak)
+-"Typing.mp3" (https://www.youtube.com/watch?v=NzhhDN7lmn0)
+-"IceBreak.mp3" (https://www.youtube.com/watch?v=AvwKDG-S_2A)
+-"EXPLDsgn_Explosion Rumble Distorted_01.wav" was sourced from Exercise-2-camera-controller
