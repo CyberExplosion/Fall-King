@@ -8,7 +8,13 @@ Help! The princess has fallen and has gotten stuck in a cave! It is your job, th
 ## Gameplay Explanation ##
 
 **In this section, explain how the game should be played. Treat this as a manual within a game. It is encouraged to explain the button mappings and the most optimal gameplay strategy.**
+W Key - to hover, slows down the falling motion
+A Key - glide left 
+D Key - glide right
 
+Also works with arrow keys. 
+
+As the knight, you should fall down avoiding the platforms and the obstacles. Colliding with the platforms will result in death and restart of the stage. There are jumping enemies which jumps at you. There are flying enemies that flies chasing you around. There are also windy areas which blows your movement around and magnet which pulls you towards the center. When entering a freeze zone, the character's movement will be frozen. In order to unfreeze, you would have to press the A and D key in rapid succession to break free. Passing all the stages leads you to the princess which results in winning the game. 
 
 **If you did work that should be factored in to your grade that does not fit easily into the proscribed roles, add it here! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
 * [Gameplay Programmer](https://www.screenskills.com/job-profiles/browse/games/programming/gameplay-programmer/) - Work on objects (prefabs) that interacts with the game world and player. Assist level designer with creating fun objects, while also tuning and balancing their effects.
