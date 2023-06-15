@@ -291,7 +291,7 @@ Through these outlets, we were able to create a narrative design around our game
 ## Animation and Visuals
 
 ### Student Information
-*Name: RCasimiro Rodriguez*   
+*Name: Casimiro Rodriguez*   
 *Email: cjrod@ucdavis.edu*   
 *Github: casrodr*
 
