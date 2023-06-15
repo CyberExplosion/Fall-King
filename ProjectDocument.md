@@ -8,8 +8,11 @@ Help! The princess has fallen and has gotten stuck in a cave! It is your job, th
 ## Gameplay Explanation ##
 
 **In this section, explain how the game should be played. Treat this as a manual within a game. It is encouraged to explain the button mappings and the most optimal gameplay strategy.**
+
 W Key - to hover, slows down the falling motion
+
 A Key - glide left 
+
 D Key - glide right
 
 Also works with arrow keys. 
